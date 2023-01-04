@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>xwiki</id>
+	<name>XWiki</name>
+	<summary>XWiki Integration for Nextcloud</summary>
+	<description><![CDATA[XWiki is a light and powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki.]]></description>
+	<version>0.0.1</version>
+	<licence>agpl</licence>
+	<author mail="raphael.jakse@xwiki.com" homepage="https://xwiki.org">Raphaël Jakse</author>
+	<category>integration</category>
+	<bugs>https://jira.xwiki.org/</bugs>
+	<dependencies>
+		<php min-version="8.0"/>
+		<nextcloud min-version="25" max-version="26"/>
+	</dependencies>
+	<navigations>
+		<navigation>
+			<name>XWiki</name>
+			<route>xwiki.page.index</route>
+		</navigation>
+	</navigations>
+	<settings>
+		<admin>OCA\Xwiki\Settings\Admin</admin>
+		<admin-section>OCA\Xwiki\Settings\AdminSection</admin-section>
+		<personal>OCA\Xwiki\Settings\User</personal>
+		<personal-section>OCA\Xwiki\Settings\UserSection</personal-section>
+	</settings>
+</info>

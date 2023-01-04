@@ -1,0 +1,15 @@
+{
+    "name": "nextcloud/xwiki",
+    "description": "XWiki Integration for Nextcloud",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Raphaël Jakse"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
+}
