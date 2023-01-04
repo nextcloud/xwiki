@@ -4,12 +4,15 @@
 	<id>xwiki</id>
 	<name>XWiki</name>
 	<summary>XWiki Integration for Nextcloud</summary>
-	<description><![CDATA[XWiki is a light and powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki.]]></description>
+	<description><![CDATA[This application allows you to search and display your XWiki content right from Nextcloud. XWiki is a powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki.]]></description>
 	<version>0.0.1</version>
 	<licence>agpl</licence>
 	<author mail="raphael.jakse@xwiki.com" homepage="https://xwiki.org">Raphaël Jakse</author>
 	<category>integration</category>
+	<website>https://github.com/raphj/xwiki-nextcloud-app</website>
 	<bugs>https://jira.xwiki.org/</bugs>
+	<repository>https://github.com/raphj/xwiki-nextcloud-app</repository>
+	<screenshot>https://raw.githubusercontent.com/raphj/xwiki-nextcloud-app/main/doc/search.png</screenshot>
 	<dependencies>
 		<php min-version="8.0"/>
 		<nextcloud min-version="25" max-version="26"/>
