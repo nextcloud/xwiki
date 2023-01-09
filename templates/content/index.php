@@ -89,6 +89,12 @@
 			?><p><?php
 			p($l->t('With the XWiki app, you will be able to search and display XWiki content.'));
 			p($l->t('No wikis are registered yet. Please ask your administrator to add some.'));
+			?></p>
+			<p><?php
+				print_unescaped($l->t(
+					"If you are an administrator, you can add wikis in the <a href='%s'>XWiki administration section</a>.",
+					[$_['urlGenerator']->linkToRoute('settings.AdminSettings.index', ['section' => 'xwiki'])]
+				));
 			?></p><?php
 		} else if (empty($_['content'])) { ?>
 			<p><?php
