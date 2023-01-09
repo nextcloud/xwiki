@@ -122,6 +122,9 @@ import { request } from './common';
 			pingResult.textContent = '✓ (XWiki v' + result.version + ')';
 			pingResult.classList.remove('ping-failure');
 			pingResult.classList.add('ping-successful');
+			if (result.url) {
+				getUrlInput(li).value = result.url;
+			}
 			switch (result.hasNextcloudApplication) {
 				case true:
 					integrationResult.textContent = t('xwiki', 'This wiki has the Nextcloud application :-)');
@@ -163,10 +166,6 @@ import { request } from './common';
 
 		if (!newURL.endsWith('/')) {
 			newURL += '/';
-		}
-
-		if (!newURL.endsWith('/xwiki/') && !confirm(t('xwiki', 'The URL does not end with /xwiki/. It is uncommon, and this should probably be added. But some XWiki installations don’t have /xwiki/. Continue?'))) {
-			return;
 		}
 
 		const savingSpan = document.createElement('span');

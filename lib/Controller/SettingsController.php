@@ -310,10 +310,22 @@ class SettingsController extends Controller {
 		$q = file_get_contents($restURL);
 
 		if (empty($q)) {
-			return new JSONResponse(
-				['error' => $this->l10n->t('We did not get a successful reply from the instance (URL: %s)', [$restURL])],
-				Http::STATUS_BAD_REQUEST
-			);
+			$workedWithXWikiAtTheEnd = false;
+			if (!str_ends_with($url, '/xwiki')) {
+				$url = $url . '/xwiki';
+				$restURL = $url . '/rest';
+				$q = file_get_contents($restURL);
+				if (!empty($q)) {
+					$workedWithXWikiAtTheEnd = true;
+				}
+			}
+
+			if (!$workedWithXWikiAtTheEnd) {
+				return new JSONResponse(
+					['error' => $this->l10n->t('We did not get a successful reply from the instance (URL: %s)', [$restURL])],
+					Http::STATUS_BAD_REQUEST
+				);
+			}
 		}
 
 		$matches = null;
