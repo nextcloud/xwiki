@@ -116,14 +116,17 @@ import { request } from './common';
 		pingResult.firstChild.className = 'icon icon-loading-small';
 		integrationResult.textContent = '';
 
-		const encodedURL = encodeURIComponent(getUrlInput(li).value);
+		const urlInput = getUrlInput(li);
+		const url = urlInput.value;
+		const encodedURL = encodeURIComponent(url);
 		const result = await request('GET', 'settings/pingInstance?url=' + encodedURL);
 		if (result?.ok) {
 			pingResult.textContent = '✓ (XWiki v' + result.version + ')';
 			pingResult.classList.remove('ping-failure');
 			pingResult.classList.add('ping-successful');
-			if (result.url) {
-				getUrlInput(li).value = result.url;
+			if (result.url && result.url !== url) {
+				urlInput.value = result.url;
+				getParentLi(urlInput).classList.add('xwiki-admin-changed');
 			}
 			switch (result.hasNextcloudApplication) {
 				case true:
