@@ -13,7 +13,7 @@ function showInstance(IL10N $l, Instance $instance, bool $hidden) {?>
 				<?php p($l->t('URL:')); ?>
 				<input
 					type="text"
-					placeholder="https://xwiki.example.com"
+					placeholder="https://xwiki.example.com/xwiki"
 					name="instance-url"
 					autocomplete="on"
 					autocapitalize="none"
