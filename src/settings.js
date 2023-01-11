@@ -4,8 +4,8 @@ import { request } from './common';
 (function () {
 	'use strict';
 
-	function getParentLi(element) {
-		while (element && element.nodeName.toLowerCase() !== 'li') {
+	function getParentElement(element) {
+		while (element && element.nodeName.toLowerCase() !== 'tr') {
 			element = element.parentNode;
 		}
 
@@ -13,65 +13,72 @@ import { request } from './common';
 	}
 
 	function handleInputChange({ currentTarget }) {
-		const li = getParentLi(currentTarget);
-		const urlInput = getUrlInput(li);
-		const clientIdInput = getClientIdInput(li);
+		const element = getParentElement(currentTarget);
+		const urlInput = getUrlInput(element);
+		const clientIdInput = getClientIdInput(element);
 		const v = urlInput.value;
 
 		if (!v || (v === urlInput.dataset.initialValue && clientIdInput.value === clientIdInput.dataset.initialValue)) {
-			li.classList.remove('xwiki-admin-changed');
+			element.classList.remove('xwiki-admin-changed');
 		} else {
-			li.classList.add('xwiki-admin-changed');
+			element.classList.add('xwiki-admin-changed');
 		}
 
 		if (currentTarget === urlInput) {
-			const pingResult = li.querySelector('.ping-result');
+			const pingResult = element.querySelector('.ping-result');
 			if (pingResult) {
 				pingResult.textContent = '';
 			}
 
-			const integrationResult = li.querySelector('.integration-result');
+			const integrationResult = element.querySelector('.integration-result');
 			if (integrationResult) {
 				integrationResult.textContent = '';
 			}
 		}
 	}
 
-	function handleAddInstanceClick() {
-		const list = document.getElementById('xwiki-admin-instance-list');
+	async function handleAddInstanceClick() {
+		const list = document.querySelectorAll('#xwiki-admin-instance-list tr');
 
 		// Prevent the user from adding spare inputs, this would expose
 		// limitations of the way the settings are saved (order cannot be
-		// guarenteed)
-		const penultimateLi = list.children[list.children.length - 2];
-		if (penultimateLi) {
-			const penultimateUrlInput = getUrlInput(penultimateLi);
+		// guaranteed)
+		const penultimateElement = list[list.length - 2];
+		if (penultimateElement) {
+			const penultimateUrlInput = getUrlInput(penultimateElement);
 			if (!penultimateUrlInput.dataset.initialValue) {
 				penultimateUrlInput.focus();
 				return;
 			}
 		}
 
-		const lastLi = list.children[list.children.length - 1];
-		const newLi = lastLi.cloneNode(true);
-		newLi.hidden = false;
-		bindEventsToLI(newLi);
-		list.insertBefore(newLi, lastLi);
-		getUrlInput(newLi).focus();
+		const lastElement = list[list.length - 1];
+		const newElement = lastElement.cloneNode(true);
+		newElement.hidden = false;
+		bindEventsToElement(newElement);
+		lastElement.parentNode.insertBefore(newElement, lastElement);
+		const urlInput = getUrlInput(newElement);
+		const newInstanceUrlInput = document.getElementById('new-instance-url');
+		urlInput.value = newInstanceUrlInput.value;
+		newInstanceUrlInput.value = "";
+		urlInput.focus();
+		await pingInstance(newElement);
+		hideOnboarding();
+		document.getElementById("add-instance-onboarding").hidden = false;
 	}
 
-	function removeLi(li) {
-		li.remove();
-		if (!getLIs().length) {
+	function removeElement(element) {
+		element.remove();
+		if (!getRegisteredInstanceElements().length) {
 			handleAddInstanceClick();
 		}
 	}
 
 	async function handleRemoveInstanceClick({ currentTarget }) {
-		const li = getParentLi(currentTarget);
-		const url = getUrlInput(li).dataset.initialValue;
+		const element = getParentElement(currentTarget);
+		const url = getUrlInput(element).dataset.initialValue;
 		if (!url) {
-			removeLi(li);
+			removeElement(element);
 			return;
 		}
 
@@ -95,7 +102,7 @@ import { request } from './common';
 		const result = await request('POST', 'settings/deleteInstance', { body });
 
 		if (result?.ok) {
-			li.remove();
+			element.remove();
 		} else {
 			alert(
 				t('xwiki', 'An error occured while removing the instance.') + (
@@ -107,16 +114,16 @@ import { request } from './common';
 		}
 	}
 
-	async function pingInstance(li) {
-		const pingResult = li.querySelector('.ping-result');
-		const integrationResult = li.querySelector('.integration-result');
+	async function pingInstance(element) {
+		const pingResult = element.querySelector('.ping-result');
+		const integrationResult = element.querySelector('.integration-result');
 
 		pingResult.textContent = '';
 		pingResult.appendChild(document.createElement('span'));
 		pingResult.firstChild.className = 'icon icon-loading-small';
 		integrationResult.textContent = '';
 
-		const urlInput = getUrlInput(li);
+		const urlInput = getUrlInput(element);
 		const url = urlInput.value;
 		const encodedURL = encodeURIComponent(url);
 		const result = await request('GET', 'settings/pingInstance?url=' + encodedURL);
@@ -126,17 +133,17 @@ import { request } from './common';
 			pingResult.classList.add('ping-successful');
 			if (result.url && result.url !== url) {
 				urlInput.value = result.url;
-				getParentLi(urlInput).classList.add('xwiki-admin-changed');
+				getParentElement(urlInput).classList.add('xwiki-admin-changed');
 			}
 			switch (result.hasNextcloudApplication) {
 				case true:
-					integrationResult.textContent = t('xwiki', 'This wiki has the Nextcloud application :-)');
+					integrationResult.textContent = t('xwiki', 'with the Nextcloud app');
 					break;
 				case false:
-					integrationResult.textContent = t('xwiki', 'This wiki does not have the Nextcloud application. Please install it!');
+					integrationResult.textContent = t('xwiki', '(the Nextcloud app is missing)');
 					break;
 				case null:
-					integrationResult.textContent = t('xwiki', 'Please make sure the Nextcloud application is installed on this wiki.');
+					integrationResult.textContent = t('xwiki', '(make sure the Nextcloud application is installed)');
 					break;
 			}
 
@@ -151,9 +158,9 @@ import { request } from './common';
 	}
 
 	async function handleSaveInstanceClick({ currentTarget }) {
-		const li = getParentLi(currentTarget);
-		const urlInput = getUrlInput(li);
-		const clientIdInput = getClientIdInput(li);
+		const element = getParentElement(currentTarget);
+		const urlInput = getUrlInput(element);
+		const clientIdInput = getClientIdInput(element);
 
 		const initialURL = urlInput.dataset.initialValue;
 		let newURL = urlInput.value;
@@ -163,7 +170,7 @@ import { request } from './common';
 		}
 
 		if (initialURL === newURL && clientIdInput.dataset.initialValue === clientIdInput.value) {
-			pingInstance(li);
+			pingInstance(element);
 			return;
 		}
 
@@ -200,7 +207,7 @@ import { request } from './common';
 			urlInput.dataset.initialValue = urlInput.value = result.url;
 			clientIdInput.dataset.initialValue = clientIdInput.value = clientId;
 			handleInputChange({currentTarget: urlInput});
-			pingInstance(li);
+			pingInstance(element);
 		} else {
 			alert(
 				t('xwiki', 'An error occured while saving the instance.') + (
@@ -214,99 +221,104 @@ import { request } from './common';
 		savingSpan.parentNode.replaceChild(currentTarget, savingSpan);
 	}
 
-	function getUrlInput(li) {
-		return li.querySelector('[name="instance-url"]');
+	function getUrlInput(element) {
+		return element.querySelector('[name="instance-url"]');
 	}
 
-	function getClientIdInput(li) {
-		return li.querySelector('[name="instance-clientid"]');
+	function getClientIdInput(element) {
+		return element.querySelector('[name="instance-clientid"]');
 	}
 
-	function getLIs() {
-		const lis = document.getElementById('xwiki-admin-instance-list')?.children || [];
+	function getRegisteredInstanceElements() {
+		const elements = document.querySelectorAll('#xwiki-admin-instance-list tr');
 
-		// We don't take the last <li> which is the hidden one used to create a
-		// new element and turn into a proper array that can be used in a
-		// for..of loop
-		return [].slice.call(lis, 0, lis.length - 1);
+		// We don't take the last element which is the hidden one used to create a
+		// new element, nor the first which is the header, and turn into a proper
+		// array that can be used in a for..of loop
+		return [].slice.call(elements, 1, elements.length - 1);
 	}
 
 	function handlePingInstanceClick({ currentTarget }) {
-		const li = getParentLi(currentTarget);
-		pingInstance(li);
+		const element = getParentElement(currentTarget);
+		pingInstance(element);
 	}
 
 	async function handleGenerateClientIdClick({ currentTarget }) {
-		const li = getParentLi(currentTarget);
-		const result = await pingInstance(li);
-		switch (result) {
-			case null: {
-				if (!confirm(t('xwiki', 'We were unable to determine if the Nextcloud application is installed on this wiki. If it is not the case, you will reach a non-existing page. Continue?'))) {
-					break;
-				}
-				// the absence of break is intentional
-			}
-
-			case true: {
-				const urlInput = getUrlInput(li);
-				location.href = urlInput.dataset.initialValue + '/bin/view/Nextcloud/Admin/?redirect_uri=' + document.getElementById('xwiki-admin-instance-list').dataset.redirectUri;
-				break;
-			}
-
-			case false: {
-				alert(t('xwiki', 'The Nextcloud application is missing on this wiki. Please install it before you can generate the client ID.'));
-				break;
-			}
-
-			default: console.error('should not happen');
-		}
+		const element = getParentElement(currentTarget);
+		const urlInput = getUrlInput(element);
+		const result = await pingInstance(element);
+		const onboarding = document.getElementById("generate-client-id-onboarding");
+		onboarding.hidden = false;
+		document.getElementById("install-nextcloud-app-advice").hidden = result === true;
+		document.getElementById("nextcloud-app-link").href = urlInput.value + "/bin/admin/XWiki/XWikiPreferences?section=XWiki.Extensions&search=Nextcloud";
+		const link = document.getElementById("generate-client-id-link");
+		link.href = urlInput.value + '/bin/view/Nextcloud/Admin/?redirect_uri=' + document.getElementById('xwiki-admin-instance-list').dataset.redirectUri;
+		link.onclick = function () {
+			const clientIdInput = getClientIdInput(element);
+			clientIdInput.value = t('xwiki', 'Paste the client ID here');
+			clientIdInput.focus();
+			clientIdInput.select();
+			onboarding.hidden = true;
+		};
+		location.href = "#generate-client-id-onboarding";
 	}
 
 	function handleUrlBlur({ currentTarget }) {
-		const li = getParentLi(currentTarget);
-		const urlInput = getUrlInput(li);
+		const element = getParentElement(currentTarget);
+		const urlInput = getUrlInput(element);
 		if (urlInput.dataset.initialValue !== urlInput.value) {
-			pingInstance(li);
+			pingInstance(element);
 		}
 	}
 
-	function bindEventsToLI(li) {
-		const urlInput = getUrlInput(li);
-		const clientIdInput = getClientIdInput(li);
+	function bindEventsToElement(element) {
+		const urlInput = getUrlInput(element);
+		const clientIdInput = getClientIdInput(element);
 		urlInput.dataset.initialValue = urlInput.value;
 		clientIdInput.dataset.initialValue = clientIdInput.value;
 		urlInput.onchange = urlInput.oninput = clientIdInput.onchange = clientIdInput.oninput = handleInputChange;
 		urlInput.onblur = handleUrlBlur;
 
-		const removeBtn = li.querySelector('.xwiki-admin-remove-instance-btn');
+		const removeBtn = element.querySelector('.xwiki-admin-remove-instance-btn');
 		removeBtn.onclick = handleRemoveInstanceClick;
 
-		const saveBtn = li.querySelector('.xwiki-admin-save-instance-btn');
+		const saveBtn = element.querySelector('.xwiki-admin-save-instance-btn');
 		saveBtn.onclick = handleSaveInstanceClick;
 
-		const pingBtn = li.querySelector('.xwiki-admin-ping-instance-btn');
+		const pingBtn = element.querySelector('.xwiki-admin-ping-instance-btn');
 		pingBtn.onclick = handlePingInstanceClick;
 
-		const generateClientIdBtn = li.querySelector('.xwiki-admin-generate-clientid-btn');
+		const generateClientIdBtn = element.querySelector('.xwiki-admin-generate-clientid-btn');
 		generateClientIdBtn.onclick = handleGenerateClientIdClick;
 
-		urlInput.onkeydown = function (e) {
-			if (e.key === 'Enter') {
-				saveBtn.click();
-			}
-		};
-		clientIdInput.onkeydown = function (e) {
+		urlInput.onkeydown = clientIdInput.onkeydown = function (e) {
 			if (e.key === 'Enter') {
 				saveBtn.click();
 			}
 		};
 	}
 
+	function getNewestInstance() {
+		return document.querySelector("#xwiki-admin-instance-list tr:last-child").previousSibling;
+	}
+
+	function hideOnboarding() {
+		for (const onboarding of document.getElementsByClassName("onboarding")) {
+			onboarding.hidden = true;
+		}
+	}
+
 	const addInstanceButton = document.getElementById('xwiki-add-instance-btn');
 	if (addInstanceButton)  {
 		addInstanceButton.onclick = handleAddInstanceClick;
-		for (const li of getLIs()) {
-			bindEventsToLI(li);
+		document.getElementById("new-instance-url").onkeydown = function (e) {
+			if (e.key === 'Enter') {
+				addInstanceButton.click();
+			}
+		};
+
+		for (const element of getRegisteredInstanceElements()) {
+			bindEventsToElement(element);
 		}
 	}
 
@@ -319,6 +331,18 @@ import { request } from './common';
 				alert('Sorry, could not save the settings');
 			}
 		});
+	}
+
+	for (const btn of document.getElementsByClassName("onboarding-skip-btn")) {
+		btn.onclick = hideOnboarding;
+	}
+
+	const onboardingGenerateButton = document.getElementById("add-instance-onboarding-generate-client-id-btn");
+	if (onboardingGenerateButton) {
+		onboardingGenerateButton.onclick = function () {
+			getNewestInstance().querySelector(".xwiki-admin-generate-clientid-btn").click();
+			hideOnboarding();
+		};
 	}
 
 	for (const getTokenBtn of document.getElementsByClassName('get-token')) {

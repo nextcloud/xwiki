@@ -1,20 +1,11 @@
 #xwiki-admin-instance-list {
-	margin-bottom: 1ex;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
-#xwiki-admin-instance-list input[type=text] {
+#xwiki-admin-instance-list input[type=text], #new-instance-url {
 	width: 30em;
 	max-width: 100%;
-}
-
-#xwiki-admin-instance-list li {
-	padding-bottom: 1ex;
-	border-bottom: 1px solid gray;
-	margin-bottom: 1ex;
-}
-
-#xwiki-admin-instance-list li:not(.xwiki-admin-changed) .xwiki-admin-save-instance-btn {
-	display: none;
 }
 
 button.xwiki-admin-remove-instance-btn {
@@ -252,9 +243,51 @@ th {
 	width: 100%;
 }
 
-.get-token.link-button {
+.get-token.link-button, #generate-client-id-link.link-button {
 	padding-top: 0.5ex;
 	padding-bottom: 0.5ex;
 	margin: 0.5ex 0;
 	box-shadow: none;
+	font-weight:bold;
+}
+
+#instances-notes-th { width: 100%; }
+
+.xwiki-admin-save-instance-btn {
+	display: none;
+}
+
+.xwiki-admin-changed .xwiki-admin-save-instance-btn {
+	display: unset;
+}
+
+h3 { font-weight: bold }
+
+.onboarding {
+	margin-bottom: 1rem;
+	padding: 1em;
+	border-left: 3px solid var(--color-primary);
+	box-shadow: 0 0 6px 0 var(--color-box-shadow);
+	display:inline-block;
+}
+
+.onboarding a[href]:not(.link-button) {
+	color: var(--color-primary);
+}
+
+.onboarding h3 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.onboarding ol {
+	margin-left: 2rem;
+}
+
+.onboarding-btns {
+	text-align: right;
+}
+
+[hidden] {
+	display: none !important;
 }
