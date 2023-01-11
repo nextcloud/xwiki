@@ -262,12 +262,21 @@ import { request } from './common';
 		}
 	}
 
+	function handleUrlBlur({ currentTarget }) {
+		const li = getParentLi(currentTarget);
+		const urlInput = getUrlInput(li);
+		if (urlInput.dataset.initialValue !== urlInput.value) {
+			pingInstance(li);
+		}
+	}
+
 	function bindEventsToLI(li) {
 		const urlInput = getUrlInput(li);
 		const clientIdInput = getClientIdInput(li);
 		urlInput.dataset.initialValue = urlInput.value;
 		clientIdInput.dataset.initialValue = clientIdInput.value;
 		urlInput.onchange = urlInput.oninput = clientIdInput.onchange = clientIdInput.oninput = handleInputChange;
+		urlInput.onblur = handleUrlBlur;
 
 		const removeBtn = li.querySelector('.xwiki-admin-remove-instance-btn');
 		removeBtn.onclick = handleRemoveInstanceClick;
