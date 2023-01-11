@@ -1,9 +1,9 @@
 import { getRequestToken } from '@nextcloud/auth'
-import { generateUrl } from '@nextcloud/router'
+import { generateFilePath } from '@nextcloud/router'
 
 export async function request(method, action, params) {
   const response = await fetch(
-    generateUrl('/index.php/apps/xwiki/' + action),
+    generateFilePath('xwiki', '', action),
     {
       method,
       headers: {
