@@ -114,7 +114,7 @@ if (!is_array($instances)) {
 						str_replace(
 							'<a>',
 							'<a id="nextcloud-app-link" href="https://extensions.xwiki.org/xwiki/bin/view/Extension/Application%20Nextcloud%20-%20UI/" target="_blank" rel="noopener">',
-							$l->t('Make sure the <a>Nextcloud application</a> is installed on this wiki (this link will take you to your extension manager')
+							$l->t('Make sure the <a>Nextcloud application</a> is installed on this wiki (this link will take you to your extension manager).')
 						)
 					); ?>
 				</li>
