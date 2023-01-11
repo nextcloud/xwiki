@@ -9,7 +9,6 @@ OC.L10N.register(
 	"This wiki has the Nextcloud application :-)": "Ce wiki a l’application Nextcloud :-)",
 	"This wiki does not have the Nextcloud application. Please install it!": "Ce wiki n’a pas l’application Nextcloud. Merci de bien vouloir l’installer !",
 	"Please make sure the Nextcloud application is installed on this wiki.": "Merci de bien vouloir vous assurer que l’application Nextcloud est installée sur ce wiki.",
-	"The URL does not end with /xwiki/. It is uncommon, and this should probably be added. But some XWiki installations don’t have /xwiki/. Continue?": "L’URL ne se termine pas par /xwiki/. Ce n’est pas habituel et cela devrait probablement être ajouté. Mais certaines installation d’XWiki n’ont pas /xwiki/. Continuer ?",
 	"Do you want to notify users about this new instance?": "Souhaitez-vous informer les utilisateurs et utilisatrices à propos de cette nouvelle instance ?",
 	"We were unable to determine if the Nextcloud application is installed on this wiki. If it is not the case, you will reach a non-existing page. Continue?": "Nous n’avons pas pu déterminer si l’application Nextcloud est installée sur ce wiki. Si ce n’est pas le cas, vous vous trouverez face à une page non existante. Continuer ?",
 	"The Nextcloud application is missing on this wiki. Please install it before you can generate the client ID.": "L’application Nextcloud manque sur ce wiki. Merci de bien vouloir l’installer afin de pouvoir générer le client ID.",

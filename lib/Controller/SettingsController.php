@@ -297,8 +297,18 @@ class SettingsController extends Controller {
 	}
 
 	public function pingInstance(): JSONResponse {
-		$url = Instance::fixURL($this->request->getParam('url'));
+		return $this->_pingInstance($this->request->getParam('url'));
+	}
 
+	private function _getVersion($q): ?string {
+		$matches = null;
+		preg_match('#<version(?:[\s][^>]*)?>([^<]+)</version>#', $q, $matches);
+		$version = $matches[1];
+		return $version;
+	}
+
+	private function _pingInstance($url): JSONResponse {
+		$url = Instance::fixURL($url);
 		if (empty($url)) {
 			return new JSONResponse(
 				['error' => 'Mandatory parameter: url'],
@@ -306,15 +316,12 @@ class SettingsController extends Controller {
 			);
 		}
 
-		$restURL = $url . '/rest';
-		$q = file_get_contents($restURL);
-
+		$q = file_get_contents($url . '/rest');
 		if (empty($q)) {
 			$workedWithXWikiAtTheEnd = false;
 			if (!str_ends_with($url, '/xwiki')) {
-				$url = $url . '/xwiki';
-				$restURL = $url . '/rest';
-				$q = file_get_contents($restURL);
+				$url .= '/xwiki';
+				$q = file_get_contents($url . '/rest');
 				if (!empty($q)) {
 					$workedWithXWikiAtTheEnd = true;
 				}
@@ -328,14 +335,26 @@ class SettingsController extends Controller {
 			}
 		}
 
-		$matches = null;
-		preg_match('#<version(?:[\s][^>]*)?>([^<]+)</version>#', $q, $matches);
-		$version = $matches[1];
+		$version = $this->_getVersion($q);
 		if (empty($version)) {
-			return new JSONResponse(
-				['error' => $this->l10n->t('We did not understand the instance’s version')],
-				Http::STATUS_BAD_REQUEST
-			);
+			$workedWithXWikiAtTheEnd = false;
+			if (!str_ends_with($url, '/xwiki')) {
+				$url .= '/xwiki';
+				$q = file_get_contents($url . '/rest');
+				if (!empty($q)) {
+					$version = $this->_getVersion($q);
+					if (!empty($version)) {
+						$workedWithXWikiAtTheEnd = true;
+					}
+				}
+			}
+
+			if (!$workedWithXWikiAtTheEnd) {
+				return new JSONResponse(
+					['error' => $this->l10n->t('We did not understand the instance’s version')],
+					Http::STATUS_BAD_REQUEST
+				);
+			}
 		}
 
 		return new JSONResponse([
