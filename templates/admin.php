@@ -89,11 +89,11 @@ if (!is_array($instances)) {
 		<section class="onboarding" id="add-instance-onboarding" hidden="hidden">
 			<h3><?php p($l->t('You are adding a wiki!')); ?></h3>
 			<p><?php
-				p($l->t('Almost there.'));
+				p($l->t('Almost there.') . ' ');
 				p($l->t('To make sure users can access their own XWiki content, generate a client ID.'));
 			 ?></p>
 			<p><?php
-				p($l->t('You can skip this step.'));
+				p($l->t('You can skip this step.') . ' ');
 				p($l->t('Users will be able to search content guests can access.'));
 			?></p>
 			<p><?php p($l->t('Don’t forget to save!')); ?></p>
