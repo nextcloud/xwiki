@@ -255,6 +255,11 @@ th {
 	width: 100%;
 }
 
+#xwiki-user-settings-instance-table th {
+	padding-left: 0.5ex;
+	padding-right: 0.5ex;
+}
+
 .get-token.link-button, #generate-client-id-link.link-button {
 	padding-top: 0.5ex;
 	padding-bottom: 0.5ex;

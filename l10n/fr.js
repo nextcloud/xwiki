@@ -1,6 +1,7 @@
 OC.L10N.register(
   "xwiki",
   {
+	"Sorry, could not save the settings": "Désolé, une erreur est survenue lors de l’enregistrement des paramètres",
 	"Are you sure you want to remove this instance?": "Souhaitez-vous vraiment supprimer cette instance ?",
 	"An error occured while removing the instance.": "Une erreur est survenue lors du retrait de l’instance.",
 	"An error occured while saving the instance.": "Une erreur est survenue lors de l’enregistrement de l’instance.",

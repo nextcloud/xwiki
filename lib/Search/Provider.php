@@ -52,6 +52,10 @@ class Provider implements IProvider {
 		$instances = $this->config->getInstances();
 		$instanceCount = count($instances);
 		foreach ($instances as $instance) {
+			if ($instance->disabled) {
+				continue;
+			}
+
 			$tags = null;
 			$content = $instance->getFile(
 				'/rest/wikis/query?q=' .

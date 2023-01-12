@@ -41,6 +41,14 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 				p($instance->getPrettyName());
 			?></a>
 		</td>
+		<td>
+			<input
+				type="checkbox"
+				class="use-instance-checkbox"
+				aria-label="<?php p($l->t('Use this wiki (%s)', [$instance->getPrettyName()])); ?>"
+				<?php if (!$instance->disabled) { ?> checked="checked" <?php } ?>
+			/>
+		</td>
 		<td><?php
 			if (empty($instance->token)) {
 				if (empty($instance->clientId)) {
@@ -97,10 +105,14 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 	<p class="settings-section__desc"><?php
 		p($l->t('If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access.'));
 	?></p>
+	<p class="settings-section__desc"><?php
+		p($l->t('You can disable wikis by unchecking their “Use” checkbox. Search results from these wikis will not be displayed.'));
+	?></p>
 	<?php if (count($instances)) { ?>
 		<table id="xwiki-user-settings-instance-table">
 			<tr>
 				<th><?php p($l->t('URL')); ?></th>
+				<th><?php p($l->t('Use')); ?></th>
 				<th><?php p($l->t('Access')); ?></th>
 			</tr>
 			<?php

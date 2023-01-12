@@ -54,7 +54,11 @@ class SettingsController extends Controller {
 		foreach ($this->getFromAppJSON('instances', '[]') as $instance) {
 			$url = $instance['url'];
 			if (!empty($url)) {
-				$res[] =  Instance::fromArray($instance, $this->getUserToken($url));
+				$res[] =  Instance::fromArray(
+					$instance,
+					$this->getUserToken($url),
+					$this->getUserDisabled($url)
+				);
 			}
 		}
 		return $res;
@@ -192,6 +196,13 @@ class SettingsController extends Controller {
 		);
 	}
 
+	public function setDisabled() {
+		$instanceUrl = $this->request->getParam('i');
+		$value = $this->request->getParam('v') === 'true';
+		$this->setUserDisabled($instanceUrl, $value);
+		return new JSONResponse(['ok' => true]);
+	}
+
 	public function setUserValue() {
 		$key = $this->request->getParam('k');
 		$value = $this->request->getParam('v');
@@ -222,7 +233,11 @@ class SettingsController extends Controller {
 	public function getInstance($url): Instance | null {
 		foreach ($this->getFromAppJSON('instances', '[]') as $instance) {
 			if ($instance['url'] === $url) {
-				return Instance::fromArray($instance, $this->getUserToken($url));
+				return Instance::fromArray(
+					$instance,
+					$this->getUserToken($url),
+					$this->getUserDisabled($url)
+				);
 			}
 		}
 		return null;
@@ -235,6 +250,25 @@ class SettingsController extends Controller {
 		}
 
 		return '';
+	}
+
+	public function getUserDisabled(string $url) {
+		$disabledInstances = $this->getFromUserJSON('disabledInstances', '{}');
+		if (!empty($disabledInstances[$url])) {
+			return $disabledInstances[$url];
+		}
+
+		return false;
+	}
+
+	public function setUserDisabled(string $url, bool $disabled) {
+		$disabledInstances = $this->getFromUserJSON('disabledInstances', '{}');
+		if (empty($disabledInstances)) {
+			unset($disabledInstances[$url]);
+		} else {
+			$disabledInstances[$url] = $disabled;
+		}
+		$this->saveAsUserJSON('disabledInstances', $disabledInstances);
 	}
 
 	public function setUserToken(string $url, string $token) {

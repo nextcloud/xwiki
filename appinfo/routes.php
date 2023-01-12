@@ -6,6 +6,7 @@ return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'page#savePDF', 'url' => '/savePDF', 'verb' => 'POST'],
+		['name' => 'settings#setDisabled', 'url' => 'settings/setDisabled', 'verb' => 'POST'],
 		['name' => 'settings#deleteToken', 'url' => 'settings/deleteToken', 'verb' => 'POST'],
 		['name' => 'settings#addToken', 'url' => 'settings/addToken', 'verb' => 'POST'],
 		['name' => 'settings#requestToken', 'url' => 'settings/requestToken', 'verb' => 'GET'],

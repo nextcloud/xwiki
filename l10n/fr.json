@@ -3,6 +3,7 @@
 	"URL": "URL",
 	"Access": "Accès",
 	"Add": "Ajouter",
+	"Use": "Utiliser",
 	"Log out": "Se déconnecter",
 	"Generate": "Générer",
 	"Cancel": "Annuler",
@@ -14,6 +15,7 @@
 	"XWiki Instances": "Instances XWiki",
 	"Wikis and Access": "Wikis et accès",
 	"Preferences": "Préférences",
+	"Use this wiki (%s)": "Utiliser ce wiki (%s)",
 	"Click on the search button at the top right of the screen and start typing to search XWiki content.": "Cliquez sur le bouton rechercher en haut à droite de l’écran pour trouver du contenu sur XWiki.",
 	"You will be able to see results from the following wikis:": "Vous pourrez trouver du contenu dans les wikis suivant :",
 	"Sign in to these wikis to be able to see personalized results.": "Connectez-vous à ces wikis pour obtenir des résultats personnalisés.",
@@ -51,6 +53,7 @@
 	"Do you want to access another wiki from Nextcloud? Please ask your administrator to add it!": "Souhaitez-vous accéder à un autre wiki depuis Nextcloud ? Demandez-le à la personne administrant cette instance de Nextcloud !",
 	"No wikis are registered yet.": "Pour l'instant, aucun wiki n’est enregistré.",
 	"Please ask your administrator to add some.": "Merci de bien vouloir demander à la personne administrant cette instance d’en ajouter.",
-	"If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access.": "Si vous avez un compte XWiki, vous pouvez cliquer sur « Obtenir l’accès » pour que Nextcloud puisse vous donner des résultats de recherches pour les choses que vous avez le droit de voir."
+	"You can disable wikis by unchecking their “Use” checkbox. Search results from these wikis will not be displayed.": "Vous pouvez désactiver des wikis en décochant leur case « Utiliser ». Les résultats de recherches depuis ces wikis ne seront pas affichés.",
+	"If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access.": "Si vous avez un compte XWiki, vous pouvez cliquer sur « Obtenir l’accès » pour que Nextcloud puisse vous donner des résultats de recherches pour les choses que vous avez le droit de voir"
 }, "pluralForm": "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

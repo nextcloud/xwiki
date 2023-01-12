@@ -10,16 +10,18 @@ class Instance {
 	public string $url;
 	public string $token;
 	public string $clientId;
+	public string $disabled;
 
-	public function __construct(string $url, string $token = '', string $clientId = '') {
+	public function __construct(string $url, string $token = '', string $clientId = '', bool $disabled = false) {
 		$this->url = Instance::fixURL($url);
 		$this->token = $token;
 		$this->clientId = $clientId;
+		$this->disabled = $disabled;
 	}
 
-	public static function fromArray(array $instance, string $token = ''): Instance {
+	public static function fromArray(array $instance, string $token = '', bool $disabled = false): Instance {
 		$clientId = empty($instance['clientId']) ? '' : $instance['clientId'];
-		return new Instance($instance['url'], $token, $clientId);
+		return new Instance($instance['url'], $token, $clientId, $disabled);
 	}
 
 
@@ -36,8 +38,6 @@ class Instance {
 					: 'http://'
 			) . $url;
 		}
-
-
 
 		return rtrim($url, '/');
 	}

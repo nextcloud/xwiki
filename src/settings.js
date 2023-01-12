@@ -366,7 +366,19 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 			const result = await request('POST', 'settings/setUserValue?k=integratedMode&v=' + integratedMode.checked);
 			if (!result?.ok) {
 				integratedMode.checked = !integratedMode.checked;
-				alert('Sorry, could not save the settings');
+				showError(t('xwiki', 'Sorry, could not save the settings'));
+			}
+		});
+	}
+
+	for (const check of document.getElementsByClassName('use-instance-checkbox')) {
+		check.addEventListener('click', async function () {
+			const disabled = !check.checked;
+			const url = check.closest('tr').querySelector('a').href;
+			const result = await request('POST', `settings/setDisabled?i=${url}&v=${disabled}`);
+			if (!result?.ok) {
+				check.checked = disabled;
+				showError(t('xwiki', 'Sorry, could not save the settings'));
 			}
 		});
 	}
