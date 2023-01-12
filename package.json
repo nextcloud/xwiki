@@ -7,13 +7,13 @@
 		"Raphaël Jakse <raphael.jakse@xwiki.com>"
 	],
 	"bugs": {
-		"url": "https://github.com/nextcloud/app-xwiki/issues"
+		"url": "https://github.com/nextcloud/xwiki/issues"
 	},
 	"repository": {
-		"url": "https://github.com/nextcloud/app-xwiki",
+		"url": "https://github.com/nextcloud/xwiki",
 		"type": "git"
 	},
-	"homepage": "https://github.com/nextcloud/app-xwiki",
+	"homepage": "https://github.com/nextcloud/xwiki",
 	"license": "agpl",
 	"private": true,
 	"scripts": {

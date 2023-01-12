@@ -9,10 +9,10 @@
 	<licence>agpl</licence>
 	<author mail="raphael.jakse@xwiki.com" homepage="https://xwiki.org">Raphaël Jakse</author>
 	<category>integration</category>
-	<website>https://github.com/raphj/xwiki-nextcloud-app</website>
-	<bugs>https://jira.xwiki.org/</bugs>
-	<repository>https://github.com/raphj/xwiki-nextcloud-app</repository>
-	<screenshot>https://raw.githubusercontent.com/raphj/xwiki-nextcloud-app/main/doc/search.png</screenshot>
+	<website>https://github.com/nextcloud/xwiki</website>
+	<bugs>https://github.com/nextcloud/xwiki</bugs>
+	<repository>https://github.com/nextcloud/xwiki</repository>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/xwiki/main/doc/search.png</screenshot>
 	<dependencies>
 		<php min-version="8.0"/>
 		<nextcloud min-version="25" max-version="26"/>
