@@ -4,8 +4,20 @@
 }
 
 #xwiki-admin-instance-list input[type=text], #new-instance-url {
-	width: 30em;
+	width: 20em;
 	max-width: 100%;
+}
+
+#new-instance-url {
+	width: 30em;
+}
+
+#no-wikis-registered-p:not([hidden]) + #xwiki-admin-instance-list {
+	display: none;
+}
+
+#no-wikis-registered-p {
+	margin-top: 1rem;
 }
 
 button.xwiki-admin-remove-instance-btn {

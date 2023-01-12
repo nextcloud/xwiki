@@ -1,5 +1,7 @@
 /* global t */
 import { request } from './common';
+import { getRootUrl } from '@nextcloud/router';
+import { showError, showInfo } from '@nextcloud/dialogs';
 
 (function () {
 	'use strict';
@@ -24,7 +26,7 @@ import { request } from './common';
 			element.classList.add('xwiki-admin-changed');
 		}
 
-		if (currentTarget === urlInput) {
+		if (currentTarget === urlInput && currentTarget.value !== currentTarget.dataset.lastPing) {
 			const pingResult = element.querySelector('.ping-result');
 			if (pingResult) {
 				pingResult.textContent = '';
@@ -38,6 +40,16 @@ import { request } from './common';
 	}
 
 	async function handleAddInstanceClick() {
+		const newInstanceUrlInput = document.getElementById('new-instance-url');
+		if (!newInstanceUrlInput.value.trim()) {
+			return;
+		}
+
+		const noWikiP = document.getElementById("no-wikis-registered-p");
+		if (noWikiP) { noWikiP.hidden = true; }
+
+		const registeredInstances = getRegisteredInstanceElements();
+
 		const list = document.querySelectorAll('#xwiki-admin-instance-list tr');
 
 		// Prevent the user from adding spare inputs, this would expose
@@ -46,7 +58,7 @@ import { request } from './common';
 		const penultimateElement = list[list.length - 2];
 		if (penultimateElement) {
 			const penultimateUrlInput = getUrlInput(penultimateElement);
-			if (!penultimateUrlInput.dataset.initialValue) {
+			if (penultimateUrlInput && !penultimateUrlInput.dataset.initialValue) {
 				penultimateUrlInput.focus();
 				return;
 			}
@@ -58,19 +70,29 @@ import { request } from './common';
 		bindEventsToElement(newElement);
 		lastElement.parentNode.insertBefore(newElement, lastElement);
 		const urlInput = getUrlInput(newElement);
-		const newInstanceUrlInput = document.getElementById('new-instance-url');
 		urlInput.value = newInstanceUrlInput.value;
 		newInstanceUrlInput.value = "";
 		urlInput.focus();
 		await pingInstance(newElement);
 		hideOnboarding();
+		const url = urlInput.value;
+		for (const element of registeredInstances) {
+			const registeredUrlInput = getUrlInput(element);
+			if (registeredUrlInput.dataset.initialValue === url) {
+				newElement.remove();
+				registeredUrlInput.focus();
+				showInfo(t("xwiki", "This wiki is already registered. We focused it for you."));
+				return;
+			}
+		}
 		document.getElementById("add-instance-onboarding").hidden = false;
 	}
 
 	function removeElement(element) {
 		element.remove();
 		if (!getRegisteredInstanceElements().length) {
-			handleAddInstanceClick();
+			const noWikiP = document.getElementById("no-wikis-registered-p");
+			if (noWikiP) { noWikiP.hidden = false; }
 		}
 	}
 
@@ -135,6 +157,7 @@ import { request } from './common';
 				urlInput.value = result.url;
 				getParentElement(urlInput).classList.add('xwiki-admin-changed');
 			}
+			integrationResult.dataset.result = result.hasNextcloudApplication;
 			switch (result.hasNextcloudApplication) {
 				case true:
 					integrationResult.textContent = t('xwiki', 'with the Nextcloud app');
@@ -147,15 +170,29 @@ import { request } from './common';
 					break;
 			}
 
+			urlInput.dataset.lastPing = urlInput.value;
+
 			return result.hasNextcloudApplication;
 		}
 
+		urlInput.dataset.lastPing = urlInput.value;
+		integrationResult.dataset.result = null;
 		pingResult.textContent = '⚠ ' + t('xwiki', 'Could not reach this instance');
 		pingResult.classList.remove('ping-successful');
 		pingResult.classList.add('ping-failure');
 
 		return null;
 	}
+
+	async function getPingResult(element) {
+		const d = element.querySelector('.integration-result').dataset;
+		if ("result" in d) {
+			const res = d.result;
+			return res === "false" ? false : res === "true" ? true : null;
+		}
+		return await pingInstance(element);
+	}
+
 
 	async function handleSaveInstanceClick({ currentTarget }) {
 		const element = getParentElement(currentTarget);
@@ -207,7 +244,6 @@ import { request } from './common';
 			urlInput.dataset.initialValue = urlInput.value = result.url;
 			clientIdInput.dataset.initialValue = clientIdInput.value = clientId;
 			handleInputChange({currentTarget: urlInput});
-			pingInstance(element);
 		} else {
 			alert(
 				t('xwiki', 'An error occured while saving the instance.') + (
@@ -246,13 +282,15 @@ import { request } from './common';
 	async function handleGenerateClientIdClick({ currentTarget }) {
 		const element = getParentElement(currentTarget);
 		const urlInput = getUrlInput(element);
-		const result = await pingInstance(element);
+		const result = await getPingResult(element);
 		const onboarding = document.getElementById("generate-client-id-onboarding");
 		onboarding.hidden = false;
 		document.getElementById("install-nextcloud-app-advice").hidden = result === true;
 		document.getElementById("nextcloud-app-link").href = urlInput.value + "/bin/admin/XWiki/XWikiPreferences?section=XWiki.Extensions&search=Nextcloud";
 		const link = document.getElementById("generate-client-id-link");
-		link.href = urlInput.value + '/bin/view/Nextcloud/Admin/?redirect_uri=' + document.getElementById('xwiki-admin-instance-list').dataset.redirectUri;
+		const redirectURI = encodeURIComponent(document.getElementById('xwiki-admin-instance-list').dataset.redirectUri);
+		const instanceURI = location.protocol + '//' + location.host + getRootUrl();
+		link.href = urlInput.value + `/bin/view/Nextcloud/Admin/?redirect_uri=${redirectURI}&instance_uri=${instanceURI}`;
 		link.onclick = function () {
 			const clientIdInput = getClientIdInput(element);
 			clientIdInput.value = t('xwiki', 'Paste the client ID here');
@@ -266,7 +304,7 @@ import { request } from './common';
 	function handleUrlBlur({ currentTarget }) {
 		const element = getParentElement(currentTarget);
 		const urlInput = getUrlInput(element);
-		if (urlInput.dataset.initialValue !== urlInput.value) {
+		if (urlInput.dataset.lastPing !== urlInput.value) {
 			pingInstance(element);
 		}
 	}

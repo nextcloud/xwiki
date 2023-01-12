@@ -113,8 +113,8 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 			<?php p($l->t('Do you want to access another wiki from Nextcloud? Please ask your administrator to add it!')); ?>
 		</p>
 	<?php } else { ?>
-		<p>
-			<?php p($l->t('No wikis are registered yet. Please ask your administrator to add some.')); ?>
-		</p>
+		<p><?php
+			p($l->t('No wikis are registered yet.') . ' ' . $l->t('Please ask your administrator to add some.'));
+		?></p>
 	<?php }?>
 </div>

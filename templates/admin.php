@@ -74,6 +74,9 @@ if (!is_array($instances)) {
 				<?php p($l->t('Add')); ?>
 			</button>
 		</p>
+		<?php if (empty($instances)) { ?>
+			<p id="no-wikis-registered-p"><?php p($l->t('No wikis are registered yet.')); ?></p>
+		<?php } ?>
 		<table id="xwiki-admin-instance-list" data-redirect-uri="<?php p($_['redirectUri']);?>">
 			<tr>
 				<th><?php p($l->t('URL')); ?></th>
@@ -94,7 +97,7 @@ if (!is_array($instances)) {
 			 ?></p>
 			<p><?php
 				p($l->t('You can skip this step.') . ' ');
-				p($l->t('Users will be able to search content guests can access.'));
+				p($l->t('Users will only be able to search content guests can access.'));
 			?></p>
 			<p><?php p($l->t('Don’t forget to save!')); ?></p>
 			<p class="onboarding-btns">

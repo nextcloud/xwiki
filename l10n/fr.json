@@ -8,6 +8,7 @@
 	"Cancel": "Annuler",
 	"Check": "Vérifier",
 	"Save": "Enregister",
+	"Notes": "Notes",
 	"Client ID:": "Client ID :",
 	"URL:": "URL :",
 	"XWiki Instances": "Instances XWiki",
@@ -32,7 +33,7 @@
 	"Almost there.": "On y est presque.",
 	"To make sure users can access their own XWiki content, generate a client ID.": "Pour que les utilisateurs et utilisatrices puissent accéder à leur propre contenu XWiki, générez un client ID.",
 	"You can skip this step.": "Vous pouvez passer cette étape.",
-	"Users will be able to search content guests can access.": "Les utilisateurs et utilisatrices pourront chercher dans le contenu que les visiteurs peuvent voir",
+	"Users will only be able to search content guests can access.": "Les utilisateurs et utilisatrices ne pourront alors que chercher dans le contenu que les visiteurs peuvent voir.",
 	"Don’t forget to save!": "N’oubliez pas d’enregistrer !",
 	"Skip this step": "Passer cette étape",
 	"Got it, generate a client ID": "Compris, générer un client ID",
@@ -48,7 +49,8 @@
 	"When you search something, Nextcloud will fetch results from the following wikis. By default, Nextcloud is not logged to these wikis, so results will be what guests see.": "Quand vous cherchez quelque chose, Nextcloud récupèrera les résultats depuis les wikis suivants. Par défaut, Nextcloud n'est pas connecté à ces wikis, donc les résultats correspondrons à ceux que les visiteurs et visiteuses voient.",
 	"Get access": "Obtenir l’accès",
 	"Do you want to access another wiki from Nextcloud? Please ask your administrator to add it!": "Souhaitez-vous accéder à un autre wiki depuis Nextcloud ? Demandez-le à la personne administrant cette instance de Nextcloud !",
-	"No wikis are registered yet. Please ask your administrator to add some.": "Pour l'instant, aucun wiki n’est enregistré. Merci de bien vouloir demander à la personne administrant cette instance d’en ajouter.",
-	"If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access.": "Si vous avez un compte XWiki, vous pouvez cliquer sur « Obtenir l’accès » pour que Nextcloud puisse vous donner des résultats de recherches pour les choses que vous avez le droit de voir"
+	"No wikis are registered yet.": "Pour l'instant, aucun wiki n’est enregistré.",
+	"Please ask your administrator to add some.": "Merci de bien vouloir demander à la personne administrant cette instance d’en ajouter.",
+	"If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access.": "Si vous avez un compte XWiki, vous pouvez cliquer sur « Obtenir l’accès » pour que Nextcloud puisse vous donner des résultats de recherches pour les choses que vous avez le droit de voir."
 }, "pluralForm": "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

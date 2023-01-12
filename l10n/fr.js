@@ -15,6 +15,7 @@ OC.L10N.register(
 	"(make sure the Nextcloud application is installed)": "(assurez-vous que l’application Nextcloud est installée)",
 	"(the Nextcloud app is missing)": "(l’application Nextcloud manque)",
 	"with the Nextcloud app": "avec l’application Nextcloud",
+	"This wiki is already registered. We focused it for you.": "Ce wiki est déjà enregistré. Nous avons placé le focus sur lui.",
 	"This wiki does not have the Nextcloud application. This is needed to get access to it from Nextcloud. Please ask its administrator to install this extension.": "Ce wiki n’a pas l’application Nextcloud. Elle est nécessaire pour y accéder depuis Nextcloud. Merci de bien vouloir demander à la personne qui l’administre d’installer cette extension.",
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
