@@ -88,7 +88,7 @@
 		if (empty($_['instances'])) { ?>
 			<section>
 				<p><?php
-				p($l->t('With the XWiki app, you will be able to search and display XWiki content.'));
+				p($l->t('With the XWiki app, you will be able to search and display XWiki content.') . ' ');
 				p($l->t('No wikis are registered yet.') . ' ' . $l->t('Please ask your administrator to add some.'));
 				?></p>
 				<p><?php
