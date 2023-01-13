@@ -77,9 +77,52 @@ button.xwiki-admin-remove-instance-btn {
 	position: relative;
 }
 
+#xwiki-app-content.onboard {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#xwiki-app-content.onboard #xwiki-content {
+	padding: 1rem;
+}
+
+#xwiki-app-content.onboard #xwiki-content h2 {
+	text-align: center;
+}
+
+#xwiki-app-content.onboard section {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+#xwiki-app-content.onboard section, .onboarding {
+	padding: 1em;
+	border-left: 3px solid var(--color-primary);
+	box-shadow: 0 0 6px 0 var(--color-box-shadow);
+}
+
+#xwiki-app-content.onboard section h3 {
+	margin-top:0;
+	padding-top:0;
+}
+
+#xwiki-app-content.onboard section h3 * {
+	height: 1rem;
+	vertical-align: middle;
+}
+
+#xwiki-app-content.onboard section h3 img {
+	margin-right: 0.75ex;
+}
+
 #xwiki-app-content table {
 	border-collapse: collapse;
 }
+
+#xwiki-onboard-icon { fill:var(--color-main-text); stroke: var(--color-main-text); }
+#xwiki-onboard-icon * { fill: none; stroke-width: 7.5px; stroke-linecap: round; stroke-linejoin: round; }
+#xwiki-onboard-icon .X { stroke-width: 13px; }
 
 #xwiki-app-content td, #xwiki-app-content th {
 	padding: 0.25ex;
@@ -282,9 +325,6 @@ h3 { font-weight: bold }
 
 .onboarding {
 	margin-bottom: 1rem;
-	padding: 1em;
-	border-left: 3px solid var(--color-primary);
-	box-shadow: 0 0 6px 0 var(--color-box-shadow);
 	display:inline-block;
 }
 
