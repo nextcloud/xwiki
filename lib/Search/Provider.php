@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace OCA\Xwiki\Search;
 
 use OCA\Xwiki\Controller\SettingsController;
+use OCP\Http\Client\IClientService;
 use OCP\IUser;
+use OCP\IURLGenerator;
 use OCP\Search\SearchResult;
 use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResultEntry;
-use OCP\IURLGenerator;
 
 if (!function_exists('str_starts_with')) {
 	// TODO: remove when PHP < 8 is not used anymore
@@ -22,9 +23,11 @@ if (!function_exists('str_starts_with')) {
 
 class Provider implements IProvider {
 	public SettingsController $config;
+	private IClientService $clientService;
 
-	public function __construct(SettingsController $config, IURLGenerator $urlGenerator) {
+	public function __construct(SettingsController $config, IClientService $clientService, IURLGenerator $urlGenerator) {
 		$this->config = $config;
+		$this->clientService = $clientService;
         $this->urlGenerator = $urlGenerator;
 	}
 
@@ -51,6 +54,7 @@ class Provider implements IProvider {
 		$integratedMode = $this->config->getFromUserJSON('integratedMode', 'false');
 		$instances = $this->config->getInstances();
 		$instanceCount = count($instances);
+		$client = $this->clientService->newClient();
 		foreach ($instances as $instance) {
 			if ($instance->disabled) {
 				continue;
@@ -58,8 +62,8 @@ class Provider implements IProvider {
 
 			$tags = null;
 			$content = $instance->getFile(
-				'/rest/wikis/query?q=' .
-				rawurlencode($query->getTerm())
+				'/rest/wikis/query?q=' . rawurlencode($query->getTerm()),
+				$client
 			);
 
 			if (!$content) {

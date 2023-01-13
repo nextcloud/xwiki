@@ -11,6 +11,7 @@ use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\Http\Client\IClientService;
 use OCP\IURLGenerator;
 use OCP\IL10N;
 use OCP\Files\File;
@@ -28,17 +29,28 @@ function get_inner_html($node) {
 
 class PageController extends Controller {
 	private $userId;
-	private SettingsController $settings;
+    private IClientService $clientService;
 	private IL10N $l10n;
 	private IRootFolder $rootFolder;
 	private IURLGenerator $urlGenerator;
+	private SettingsController $settings;
 
-	public function __construct($AppName, IRequest $request, $UserId, SettingsController $settings, IL10N $l10n, IURLGenerator $urlGenerator, IRootFolder $rootFolder) {
+	public function __construct(
+		$AppName,
+		$UserId,
+		IClientService $clientService,
+		IL10N $l10n,
+		IRequest $request,
+		IRootFolder $rootFolder,
+		IURLGenerator $urlGenerator,
+		SettingsController $settings
+	) {
 		parent::__construct($AppName, $request);
-		$this->userId = $UserId;
-		$this->settings = $settings;
+        $this->clientService = $clientService;
 		$this->l10n = $l10n;
 		$this->urlGenerator = $urlGenerator;
+		$this->userId = $UserId;
+		$this->settings = $settings;
 		$this->rootFolder = $rootFolder;
 	}
 
@@ -77,7 +89,7 @@ class PageController extends Controller {
 		$xwikiExportPDFURL = $instance->getLinkFromId($page, 'export') . '?format=pdf';
 		try {
 			$f = $userFolder->get($path);
-		} catch (\OCP\Files\NotFoundException $e) {}
+		} catch (\OCP\Files\NotFoundException) {}
 
 		$page = strtr(explode(':', $page, 2)[1], ':', '_');
 		$suffix = '';
@@ -91,7 +103,12 @@ class PageController extends Controller {
 			} while ($userFolder->nodeExists($path));
 		}
 
-		$content = file_get_contents($xwikiExportPDFURL);
+        $client = $this->clientService->newClient();
+		try {
+			$content = $client->get($xwikiExportPDFURL)->getBody();
+		} catch (\Exception) {
+			$content = '';
+		}
 		if (empty($content)) {
 			return new JSONResponse(
 				['error' => $this->l10n->t('Could not get the content of this page.')],
@@ -103,7 +120,7 @@ class PageController extends Controller {
 			if ($userFolder->newFile($path, $content)) {
 				return new JSONResponse(['ok' => true, 'path' => $path]);
 			}
-		} catch (\OCP\Files\NotPermittedException $e) {
+		} catch (\OCP\Files\NotPermittedException) {
 			return new JSONResponse(
 				['error' => $this->l10n->t('You are not permitted to create this file.'), 'path' => $path],
 				Http::STATUS_INTERNAL_SERVER_ERROR
@@ -153,7 +170,8 @@ class PageController extends Controller {
 				$xwikiEditURL = $instance->getLinkFromId($page, 'edit');
 				$xwikiExportPDFURL = $instance->getLinkFromId($page, 'export') . '?format=pdf';
 				if ($integratedMode) {
-					$doc = $instance->loadHTML($xwikiURL);
+					$client = $this->clientService->newClient();
+					$doc = $instance->loadHTML($xwikiURL, $client);
 					$xwikiContent = '';
 
 					if ($doc !== null && $doc->documentElement !== null) {
@@ -215,7 +233,7 @@ class PageController extends Controller {
 
 					$pagesURL = ($instance->getPageListRestURL($wiki, $unqualifiedPage));
 					if (!empty($pagesURL)) {
-						$doc = $instance->loadXML($pagesURL);
+						$doc = $instance->loadXML($pagesURL, $client);
 						if (!empty($doc)) {
 							foreach ($doc->getElementsByTagName('pageSummary') as $pageSummary) {
 								$pages[] = [

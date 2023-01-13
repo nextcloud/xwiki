@@ -2,6 +2,7 @@
 
 namespace OCA\Xwiki;
 
+use OCP\Http\Client\IClient;
 use DOMDocument;
 
 class Instance {
@@ -181,7 +182,7 @@ class Instance {
 		return $host;
 	}
 
-	public function getFile($url) {
+	public function getFile(string $url, IClient $client): ?string {
 		if (!str_starts_with($url, 'http://') && !str_starts_with($url, 'https://')) {
 			if ($url[0] !== '/') {
 				$url = '/' . $url;
@@ -189,24 +190,23 @@ class Instance {
 			$url = $this->url . $url;
 		}
 
-		$context = null;
+		$opts = [];
 		if (!empty($this->token)) {
-			$context = stream_context_create([
-				'http' => [
-					'method'  => 'GET',
-					'header'  => 'Authorization: Bearer ' . $this->token
-				]
-			]);
+			$opts['headers'] = ['Authorization: Bearer ' . $this->token];
 		}
 
-		return file_get_contents($url, false, $context);
+		try {
+			return $client->get($url, $opts)->getBody();
+		} catch (\Exception) {
+			return null;
+		}
 	}
 
 	// returns
 	//  - true if the instance has nextcloud integration
 	//  - false if it does not have it
 	//  - null if we don't know
-	public static function hasNextcloudApplication($url) {
+	public static function hasNextcloudApplication($url): ?bool {
 		$matches = [];
 		$headers = get_headers(
 			$url . '/rest/wikis/xwiki/spaces/Nextcloud/pages/WebHome',
@@ -236,38 +236,29 @@ class Instance {
 		return null;
 	}
 
-	public function loadXML(string $url) {
+	public function loadXML(string $url, IClient $client) {
 		$doc = new DOMDocument();
 		try {
-			if (empty($this->token)) {
-				$doc->load($url);
-			} else {
-				$f = $this->getFile($url);
-				if (empty($f)) {
-					return null;
-				}
-				$doc->loadXML($f);
+			$f = $this->getFile($url, $client);
+			if (empty($f)) {
+				return null;
 			}
-		} catch (Exception $e) {
+			$doc->loadXML($f);
+		} catch (\Exception $e) {
 			return null;
 		}
 		return $doc;
 	}
 
-	public function loadHTML(string $url) {
+	public function loadHTML(string $url, IClient $client) {
 		try {
-			if (empty($this->token)) {
-				$doc = new DOMDocument();
-				$doc->loadHTMLFile($url);
-			} else {
-				$file = $this->getFile($url);
-				if (empty($file)) {
-					return null;
-				}
-				$doc = new DOMDocument();
-				$doc->loadHTML($file);
+			$file = $this->getFile($url, $client);
+			if (empty($file)) {
+				return null;
 			}
-		} catch (Exception $e) {
+			$doc = new DOMDocument();
+			$doc->loadHTML($file);
+		} catch (\Exception $e) {
 			return null;
 		}
 

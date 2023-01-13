@@ -11,37 +11,41 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\NotFoundResponse;
-use OCP\Notification\IManager;
+use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
+use OCP\IUser;
+use OCP\Notification\IManager;
 use OCP\PreConditionNotMetException;
 use OCP\Util;
-use OCP\IUser;
 
 class SettingsController extends Controller {
 	private $userId;
 	private IL10N $l10n;
 	private IConfig $config;
-	private IURLGenerator $urlGenerator;
+    private IClientService $clientService;
 	private IManager $manager;
+	private IURLGenerator $urlGenerator;
 	private IUserManager $userManager;
 
 	public function __construct(
 		$appName,
 		$UserId,
-		IRequest $request,
-		IL10N $l10n,
-		IURLGenerator $urlGenerator,
 		IConfig $config,
+		IClientService $clientService,
+		IL10N $l10n,
 		IManager $manager,
+		IRequest $request,
+		IURLGenerator $urlGenerator,
 		IUserManager $userManager
 	) {
 		parent::__construct($appName, $request);
 		$this->l10n = $l10n;
 		$this->config = $config;
+		$this->clientService = $clientService;
 		$this->request = $request;
 		$this->urlGenerator = $urlGenerator;
 		$this->userId = $UserId;
@@ -146,21 +150,25 @@ class SettingsController extends Controller {
 		}
 
 		if ($user === $this->userId) {
-			$answer = file_get_contents(
-				$instanceURL . '/bin/view/Nextcloud/Tokens/Create',
-				false,
-				stream_context_create(['http' => [
-					'method' => 'POST',
-					'header'  => 'Content-type: application/x-www-form-urlencoded',
-					'content' => http_build_query([
-						'grant_type' => 'authorization_code',
-						'code' => $code,
-						'redirect_uri' => $this->getRedirectURL()
-					])
-				]])
-			);
+			$client = $this->clientService->newClient();
+			try {
+				$response = $client->post(
+					$instanceURL . '/bin/view/Nextcloud/Tokens/Create', [
+						'headers'  => [
+							'Content-type: application/x-www-form-urlencoded',
+						],
+						'body' => http_build_query([
+							'grant_type' => 'authorization_code',
+							'code' => $code,
+							'redirect_uri' => $this->getRedirectURL()
+						])
+					]
+				);
+			} catch (\Exception) {
+				$response = '';
+			}
 
-			$t = json_decode($answer, true);
+			$t = json_decode($response, true);
 
 			if (empty($t) || empty($t['access_token'])) {
 				return new RedirectResponse(
@@ -350,12 +358,24 @@ class SettingsController extends Controller {
 			);
 		}
 
-		$q = file_get_contents($url . '/rest');
+		$client = $this->clientService->newClient();
+
+		try {
+			$q = $client->get($url . '/rest')->getBody();
+		} catch (\Exception) {
+			$q = '';
+		}
+
 		if (empty($q)) {
 			$workedWithXWikiAtTheEnd = false;
 			if (!str_ends_with($url, '/xwiki')) {
 				$url .= '/xwiki';
-				$q = file_get_contents($url . '/rest');
+				$restURL = $url . '/rest';
+				try {
+					$q = $client->get($restURL)->getBody();
+				} catch (\Exception) {
+					$q = '';
+				}
 				if (!empty($q)) {
 					$workedWithXWikiAtTheEnd = true;
 				}
@@ -374,7 +394,11 @@ class SettingsController extends Controller {
 			$workedWithXWikiAtTheEnd = false;
 			if (!str_ends_with($url, '/xwiki')) {
 				$url .= '/xwiki';
-				$q = file_get_contents($url . '/rest');
+				try {
+					$q = $client->get($url . '/rest')->getBody();
+				} catch (\Exception) {
+					$q = '';
+				}
 				if (!empty($q)) {
 					$version = $this->_getVersion($q);
 					if (!empty($version)) {
