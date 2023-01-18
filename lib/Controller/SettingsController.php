@@ -102,16 +102,14 @@ class SettingsController extends Controller {
 					'response_type' => 'code',
 					'client_id' => $instance->clientId,
 					'state' => $state,
-					'redirect_uri' => $this->getRedirectURL()
+					'redirect_uri' => $this->getRedirectURI()
 				])
 			);
 		} // else todo
 	}
 
-	public function getRedirectURL() {
-		return (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') .
-			$_SERVER['SERVER_NAME'] .
-			$this->urlGenerator->linkToRoute('xwiki.settings.oidcRedirect');
+	public function getRedirectURI() {
+		return $this->urlGenerator->linkToRouteAbsolute('xwiki.settings.oidcRedirect');
 	}
 
 	/**
@@ -160,7 +158,7 @@ class SettingsController extends Controller {
 						'body' => http_build_query([
 							'grant_type' => 'authorization_code',
 							'code' => $code,
-							'redirect_uri' => $this->getRedirectURL()
+							'redirect_uri' => $this->getRedirectURI()
 						])
 					]
 				)->getBody();

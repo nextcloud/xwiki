@@ -25,7 +25,7 @@ class Admin implements ISettings {
 			'xwiki',
 			'admin', [
 				'instances' => $this->settings->getInstances(),
-				'redirectUri' => $this->settings->getRedirectURL()
+				'redirectUri' => $this->settings->getRedirectURI()
 			],
 			'blank'
 		);
