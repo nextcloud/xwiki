@@ -121,7 +121,12 @@ if (!is_array($instances)) {
 						)
 					); ?>
 				</li>
-				<li><?php p($l->t('You will be taken to XWiki. Follow the instructions and paste the generated client ID here.')); ?></li>
+				<li><?php p($l->t('You will be taken to XWiki.')); ?>
+					<ul>
+						<li><strong><?php  p($l->t('Note: you need to be logged as an admin on XWiki.')); ?></strong></li>
+						<li><?php p($l->t('Follow the instructions and paste the generated client ID here.')); ?></li>
+					</ul>
+				</li>
 				<li><?php p($l->t('Don’t forget to save!')); ?></li>
 			</ol>
 			<p class="onboarding-btns">

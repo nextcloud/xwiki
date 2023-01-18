@@ -177,7 +177,7 @@ button.xwiki-admin-remove-instance-btn {
   border-color: #e8f0f7;
 }
 
-#xwiki-app-content ul {
+#xwiki-app-content ul, .onboarding ul {
 	list-style: disc;
 	margin-left:2em;
 }

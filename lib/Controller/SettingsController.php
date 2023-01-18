@@ -409,7 +409,7 @@ class SettingsController extends Controller {
 
 			if (!$workedWithXWikiAtTheEnd) {
 				return new JSONResponse(
-					['error' => $this->l10n->t('We did not understand the instance’s version')],
+					['error' => $this->l10n->t('We did not understand the instance’s version') . ' ' . $q],
 					Http::STATUS_BAD_REQUEST
 				);
 			}
