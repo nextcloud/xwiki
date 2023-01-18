@@ -192,7 +192,7 @@ class Instance {
 
 		$opts = [];
 		if (!empty($this->token)) {
-			$opts['headers'] = ['Authorization: Bearer ' . $this->token];
+			$opts['headers'] = ['Authorization' => 'Bearer ' . $this->token];
 		}
 
 		try {
@@ -206,29 +206,21 @@ class Instance {
 	//  - true if the instance has nextcloud integration
 	//  - false if it does not have it
 	//  - null if we don't know
-	public static function hasNextcloudApplication($url): ?bool {
+	public static function hasNextcloudApplication($url, IClient $client): ?bool {
 		$matches = [];
-		$headers = get_headers(
-			$url . '/rest/wikis/xwiki/spaces/Nextcloud/pages/WebHome',
-			false,
-			stream_context_create(['http' => ['method'  => 'HEAD']])
-		);
-
-		if (empty($headers) || !preg_match(
-			'#^HTTP/[\S]+[\s]+([0-9]+)#i',
-			$headers[0],
-			$matches
-		)) {
-			return null;
+		try {
+			$status = $client->head(
+				$url . '/rest/wikis/xwiki/spaces/Nextcloud/pages/WebHome',
+			)->getStatusCode();
+		} catch (\Exception) {
+			return false;
 		}
 
-		$status = $matches[1];
-
-		if ($status === '200') {
+		if ($status === 200) {
 			return true;
 		}
 
-		if ($status === '404') {
+		if ($status === 404) {
 			return false;
 		}
 
@@ -244,7 +236,7 @@ class Instance {
 				return null;
 			}
 			$doc->loadXML($f);
-		} catch (\Exception $e) {
+		} catch (\Exception) {
 			return null;
 		}
 		return $doc;
@@ -258,7 +250,7 @@ class Instance {
 			}
 			$doc = new DOMDocument();
 			$doc->loadHTML($file);
-		} catch (\Exception $e) {
+		} catch (\Exception) {
 			return null;
 		}
 

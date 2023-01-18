@@ -155,7 +155,7 @@ class SettingsController extends Controller {
 				$response = $client->post(
 					$instanceURL . '/bin/view/Nextcloud/Tokens/Create', [
 						'headers'  => [
-							'Content-type: application/x-www-form-urlencoded',
+							'Content-type' => 'application/x-www-form-urlencoded',
 						],
 						'body' => http_build_query([
 							'grant_type' => 'authorization_code',
@@ -163,10 +163,12 @@ class SettingsController extends Controller {
 							'redirect_uri' => $this->getRedirectURL()
 						])
 					]
-				);
+				)->getBody();
 			} catch (\Exception) {
 				$response = '';
 			}
+
+			// die($response); // useful to debug
 
 			$t = json_decode($response, true);
 
@@ -419,7 +421,7 @@ class SettingsController extends Controller {
 			'ok' => true,
 			'version' => $version,
 			'url' => $url,
-			'hasNextcloudApplication' => Instance::hasNextcloudApplication($url)
+			'hasNextcloudApplication' => Instance::hasNextcloudApplication($url, $client)
 		]);
 	}
 
