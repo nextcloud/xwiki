@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\Xwiki\Search;
 
-use OCA\Xwiki\Controller\SettingsController;
+use OCA\Xwiki\SettingsManager;
 use OCP\Http\Client\IClientService;
 use OCP\IUser;
 use OCP\IURLGenerator;
@@ -22,11 +22,11 @@ if (!function_exists('str_starts_with')) {
 }
 
 class Provider implements IProvider {
-	public SettingsController $config;
+	public SettingsManager $settings;
 	private IClientService $clientService;
 
-	public function __construct(SettingsController $config, IClientService $clientService, IURLGenerator $urlGenerator) {
-		$this->config = $config;
+	public function __construct(SettingsManager $settings, IClientService $clientService, IURLGenerator $urlGenerator) {
+		$this->settings = $settings;
 		$this->clientService = $clientService;
         $this->urlGenerator = $urlGenerator;
 	}
@@ -51,8 +51,8 @@ class Provider implements IProvider {
 	public function search(IUser $user, ISearchQuery $query): SearchResult {
 		$results = [];
 
-		$integratedMode = $this->config->getFromUserJSON('integratedMode', 'false');
-		$instances = $this->config->getInstances();
+		$integratedMode = $this->settings->getFromUserJSON('integratedMode', 'false');
+		$instances = $this->settings->getInstances();
 		$instanceCount = count($instances);
 		$client = $this->clientService->newClient();
 		foreach ($instances as $instance) {

@@ -2,7 +2,7 @@
 namespace OCA\Xwiki\Controller;
 
 use OCP\IRequest;
-use OCA\Xwiki\Controller\SettingsController;
+use OCA\Xwiki\SettingsManager;
 use OCA\Xwiki\Instance;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
@@ -33,7 +33,7 @@ class PageController extends Controller {
 	private IL10N $l10n;
 	private IRootFolder $rootFolder;
 	private IURLGenerator $urlGenerator;
-	private SettingsController $settings;
+	private SettingsManager $settings;
 
 	public function __construct(
 		$AppName,
@@ -43,7 +43,7 @@ class PageController extends Controller {
 		IRequest $request,
 		IRootFolder $rootFolder,
 		IURLGenerator $urlGenerator,
-		SettingsController $settings
+		SettingsManager $settings
 	) {
 		parent::__construct($AppName, $request);
         $this->clientService = $clientService;

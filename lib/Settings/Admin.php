@@ -1,7 +1,7 @@
 <?php
 namespace OCA\Xwiki\Settings;
 
-use OCA\Xwiki\Controller\SettingsController;
+use OCA\Xwiki\SettingsManager;
 use OCA\Xwiki\Instance;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
@@ -10,9 +10,9 @@ use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
 	private IL10N $l;
-	public SettingsController $settings;
+	public SettingsManager $settings;
 
-	public function __construct(SettingsController $settings, IL10N $l) {
+	public function __construct(SettingsManager $settings, IL10N $l) {
 		$this->settings = $settings;
 		$this->l = $l;
 	}

@@ -3,6 +3,7 @@
 namespace OCA\Xwiki\Controller;
 
 use OCA\Xwiki\Instance;
+use OCA\Xwiki\SettingsManager;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
@@ -12,7 +13,6 @@ use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\NotFoundResponse;
 use OCP\Http\Client\IClientService;
-use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
@@ -25,56 +25,41 @@ use OCP\Util;
 class SettingsController extends Controller {
 	private $userId;
 	private IL10N $l10n;
-	private IConfig $config;
     private IClientService $clientService;
 	private IManager $manager;
 	private IURLGenerator $urlGenerator;
 	private IUserManager $userManager;
+	private SettingsManager $settings;
 
 	public function __construct(
 		$appName,
 		$UserId,
-		IConfig $config,
 		IClientService $clientService,
 		IL10N $l10n,
 		IManager $manager,
 		IRequest $request,
 		IURLGenerator $urlGenerator,
-		IUserManager $userManager
+		IUserManager $userManager,
+		SettingsManager $settings
 	) {
 		parent::__construct($appName, $request);
 		$this->l10n = $l10n;
-		$this->config = $config;
 		$this->clientService = $clientService;
 		$this->request = $request;
 		$this->urlGenerator = $urlGenerator;
 		$this->userId = $UserId;
 		$this->userManager = $userManager;
 		$this->manager = $manager;
-	}
-
-	public function getInstances(): array {
-		$res = [];
-		foreach ($this->getFromAppJSON('instances', '[]') as $instance) {
-			$url = $instance['url'];
-			if (!empty($url)) {
-				$res[] =  Instance::fromArray(
-					$instance,
-					$this->getUserToken($url),
-					$this->getUserDisabled($url)
-				);
-			}
-		}
-		return $res;
+		$this->settings = $settings;
 	}
 
 	/**
 	 * @NoCSRFRequired
 	*/
-	public function addToken() {
+	public function addToken(): RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$token = $this->request->getParam('token');
-		$this->setUserToken($instanceUrl, $token);
+		$this->settings->setUserToken($instanceUrl, $token);
 		return new RedirectResponse(
 			$this->urlGenerator->linkToRoute(
 				'settings.PersonalSettings.index',
@@ -83,18 +68,18 @@ class SettingsController extends Controller {
 		);
 	}
 
-	public function requestToken() {
+	public function requestToken(): ?RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
-		$instance = $this->getInstance($instanceUrl);
+		$instance = $this->settings->getInstance($instanceUrl);
 		if ($instance !== null) {
 			$state = bin2hex(random_bytes(20));
-			$states = $this->getFromAppJSON('oidc_states', []);
+			$states = $this->settings->getFromAppJSON('oidc_states', []);
 			$states[$state] = [
 				'user' => $this->userId,
 				'instance' => $instance->url,
 				'date' => $_SERVER['REQUEST_TIME']
 			];
-			$this->saveAsAppJSON('oidc_states', $states);
+			$this->settings->saveAsAppJSON('oidc_states', $states);
 			// FIXME check instance
 			return new RedirectResponse(
 				$instanceUrl
@@ -102,23 +87,20 @@ class SettingsController extends Controller {
 					'response_type' => 'code',
 					'client_id' => $instance->clientId,
 					'state' => $state,
-					'redirect_uri' => $this->getRedirectURI()
+					'redirect_uri' => $this->settings->getRedirectURI()
 				])
 			);
 		} // else todo
-	}
-
-	public function getRedirectURI() {
-		return $this->urlGenerator->linkToRouteAbsolute('xwiki.settings.oidcRedirect');
+		return null;
 	}
 
 	/**
 	 * @NoCSRFRequired
 	*/
-	public function oidcRedirect() {
+	public function oidcRedirect(): RedirectResponse {
 		$state = $this->request->getParam('state');
 		$code = $this->request->getParam('code');
-		$states = $this->getFromAppJSON('oidc_states', []);
+		$states = $this->settings->getFromAppJSON('oidc_states', []);
 
 		if (empty($states[$state])) {
 			return new RedirectResponse(
@@ -131,8 +113,8 @@ class SettingsController extends Controller {
 
 		['instance' => $instanceURL, 'user' => $user] = $states[$state];
 		unset($states[$state]);
-		$this->saveAsAppJSON('oidc_states', $states);
-		$instance = $this->getInstance($instanceURL);
+		$this->settings->saveAsAppJSON('oidc_states', $states);
+		$instance = $this->settings->getInstance($instanceURL);
 		$error = $this->request->getParam('error');
 		if (!empty($error)) {
 			return new RedirectResponse(
@@ -158,7 +140,7 @@ class SettingsController extends Controller {
 						'body' => http_build_query([
 							'grant_type' => 'authorization_code',
 							'code' => $code,
-							'redirect_uri' => $this->getRedirectURI()
+							'redirect_uri' => $this->settings->getRedirectURI()
 						])
 					]
 				)->getBody();
@@ -182,7 +164,7 @@ class SettingsController extends Controller {
 				);
 			}
 
-			$this->setUserToken($instanceURL, $t['access_token']);
+			$this->settings->setUserToken($instanceURL, $t['access_token']);
 		}
 
 		return new RedirectResponse(
@@ -193,9 +175,9 @@ class SettingsController extends Controller {
 		);
 	}
 
-	public function deleteToken() {
+	public function deleteToken(): RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
-		$this->setUserToken($instanceUrl, '');
+		$this->settings->setUserToken($instanceUrl, '');
 		return new RedirectResponse(
 			$this->urlGenerator->linkToRoute(
 				'settings.PersonalSettings.index',
@@ -204,14 +186,14 @@ class SettingsController extends Controller {
 		);
 	}
 
-	public function setDisabled() {
+	public function setDisabled(): JSONResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$value = $this->request->getParam('v') === 'true';
-		$this->setUserDisabled($instanceUrl, $value);
+		$this->settings->setUserDisabled($instanceUrl, $value);
 		return new JSONResponse(['ok' => true]);
 	}
 
-	public function setUserValue() {
+	public function setUserValue(): JSONResponse {
 		$key = $this->request->getParam('k');
 		$value = $this->request->getParam('v');
 
@@ -231,62 +213,11 @@ class SettingsController extends Controller {
 		}
 
 		if (empty($value)) {
-			$this->config->deleteUserValue($this->userId, 'xwiki', $key);
+			$this->settings->deleteUserValue($this->userId, $key);
 		}
 
-		$this->saveAsUserString($key, $value);
+		$this->settings->saveAsUserString($key, $value);
 		return new JSONResponse(['ok' => true]);
-	}
-
-	public function getInstance($url): Instance | null {
-		foreach ($this->getFromAppJSON('instances', '[]') as $instance) {
-			if ($instance['url'] === $url) {
-				return Instance::fromArray(
-					$instance,
-					$this->getUserToken($url),
-					$this->getUserDisabled($url)
-				);
-			}
-		}
-		return null;
-	}
-
-	public function getUserToken(string $url) {
-		$tokens = $this->getFromUserJSON('tokens', '{}');
-		if (!empty($tokens[$url])) {
-			return $tokens[$url];
-		}
-
-		return '';
-	}
-
-	public function getUserDisabled(string $url) {
-		$disabledInstances = $this->getFromUserJSON('disabledInstances', '{}');
-		if (!empty($disabledInstances[$url])) {
-			return $disabledInstances[$url];
-		}
-
-		return false;
-	}
-
-	public function setUserDisabled(string $url, bool $disabled) {
-		$disabledInstances = $this->getFromUserJSON('disabledInstances', '{}');
-		if (empty($disabledInstances)) {
-			unset($disabledInstances[$url]);
-		} else {
-			$disabledInstances[$url] = $disabled;
-		}
-		$this->saveAsUserJSON('disabledInstances', $disabledInstances);
-	}
-
-	public function setUserToken(string $url, string $token) {
-		$tokens = $this->getFromUserJSON('tokens', '{}');
-		if (empty($token)) {
-			unset($tokens[$url]);
-		} else {
-			$tokens[$url] = $token;
-		}
-		$this->saveAsUserJSON('tokens', $tokens);
 	}
 
 	public function addInstance(): JSONResponse {
@@ -300,7 +231,7 @@ class SettingsController extends Controller {
 			);
 		}
 
-		$instances = $this->getFromAppJSON('instances', '[]');
+		$instances = $this->settings->getFromAppJSON('instances', '[]');
 
 		foreach ($instances as $instance) {
 			if ($instance['url'] === $url) {
@@ -313,7 +244,7 @@ class SettingsController extends Controller {
 
 		$instances[] = ['url' => $url, 'clientId' => $clientId];
 
-		$this->saveAsAppJSON('instances', $instances);
+		$this->settings->saveAsAppJSON('instances', $instances);
 
 		$this->maybeNotify($url);
 
@@ -436,7 +367,7 @@ class SettingsController extends Controller {
 		}
 
 		$found = null;
-		$instances = $this->getFromAppJSON('instances', '[]');
+		$instances = $this->settings->getFromAppJSON('instances', '[]');
 		foreach ($instances as &$instance) {
 			if ($instance['url'] === $oldUrl) {
 				$instance['url'] = Instance::fixURL($newUrl);
@@ -454,65 +385,16 @@ class SettingsController extends Controller {
 			return new JSONResponse(['error' => $this->l10n->t('Could not find the instance you are trying to replace. This should not happen, please report a bug.')]);
 		}
 
-		$this->saveAsAppJSON('instances', $instances);
+		$this->settings->saveAsAppJSON('instances', $instances);
 		$this->maybeNotify($newUrl);
 		return new JSONResponse(['ok' => true, 'url' => $found['url']]);
-	}
-
-	private function saveAsAppJSON($key, $value): void {
-		$this->config->setAppValue(
-			'xwiki',
-			$key,
-			json_encode(
-				$value,
-				JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
-			)
-		);
-	}
-
-	private function saveAsUserJSON(string $key, mixed $value): void {
-		$this->saveAsUserString(
-			$key,
-			json_encode(
-				$value,
-				JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
-			)
-		);
-	}
-
-	private function saveAsUserString(string $key, string $value): void {
-		$this->config->setUserValue($this->userId, 'xwiki', $key, $value);
-	}
-
-	public function getFromAppJSON($key, $defaultJSONString): mixed {
-		return $this->getFromJSON(
-			$this->config->getAppValue('xwiki', $key, $defaultJSONString),
-			$defaultJSONString
-		);
-	}
-
-	public function getFromUserJSON($key, $defaultJSONString): mixed {
-		return $this->getFromJSON(
-			$this->config->getUserValue($this->userId, 'xwiki', $key, $defaultJSONString),
-			$defaultJSONString
-		);
-	}
-
-	private function getFromJSON($configVal, $defaultJSONString): mixed {
-		$configVal = empty($configVal) ? '' : json_decode($configVal, true);
-
-		if (($defaultJSONString === '[]' || is_array($defaultJSONString)) && !is_array($configVal)) {
-			return [];
-		}
-
-		return $configVal;
 	}
 
 	public function deleteInstance(): JSONResponse {
 		$url = $this->request->getParam('url');
 
-		$this->saveAsAppJSON('instances', array_filter(
-			$this->getFromAppJSON('instances', '[]'),
+		$this->settings->saveAsAppJSON('instances', array_filter(
+			$this->settings->getFromAppJSON('instances', '[]'),
 			function ($instance) use ($url) {
 				return !empty($instance['url']) && $instance['url'] !== $url;
 			}

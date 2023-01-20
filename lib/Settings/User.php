@@ -1,7 +1,7 @@
 <?php
 namespace OCA\Xwiki\Settings;
 
-use OCA\Xwiki\Controller\SettingsController;
+use OCA\Xwiki\SettingsManager;
 use OCA\Xwiki\Instance;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
@@ -11,13 +11,13 @@ use OCP\IURLGenerator;
 use OCP\Settings\ISettings;
 
 class User implements ISettings {
-	public SettingsController $config;
+	public SettingsManager $settings;
 	private IL10N $l;
 	private IRequest $request;
 	private IURLGenerator $urlGenerator;
 
-	public function __construct(SettingsController $config, IL10N $l, IRequest $request, IURLGenerator $urlGenerator) {
-		$this->config = $config;
+	public function __construct(SettingsManager $settings, IL10N $l, IRequest $request, IURLGenerator $urlGenerator) {
+		$this->settings = $settings;
 		$this->l = $l;
 		$this->urlGenerator = $urlGenerator;
 		$this->request = $request;
@@ -30,9 +30,9 @@ class User implements ISettings {
 		return new TemplateResponse(
 			'xwiki',
 			'usersettings', [
-				'instances' => $this->config->getInstances(),
+				'instances' => $this->settings->getInstances(),
 				'urlGenerator' => $this->urlGenerator,
-				'integratedMode' => $this->config->getFromUserJSON('integratedMode', 'false'),
+				'integratedMode' => $this->settings->getFromUserJSON('integratedMode', 'false'),
 				'instanceUrl' => $this->request->getParam('i'),
 				'error' => $this->request->getParam('error')
 			],

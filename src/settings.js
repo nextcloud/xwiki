@@ -108,7 +108,9 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 			return;
 		}
 
+
 		currentTarget.disabled = true;
+		const text = currentTarget.textContent;
 		currentTarget.textContent = '';
 		currentTarget.classList.remove('icon')
 		currentTarget.classList.remove('icon-delete');
@@ -126,6 +128,12 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		if (result?.ok) {
 			element.remove();
 		} else {
+			currentTarget.removeChild(currentTarget.lastChild);
+			currentTarget.removeChild(currentTarget.lastChild);
+			currentTarget.textContent = text;
+			currentTarget.disabled = false;
+			currentTarget.classList.add('icon')
+			currentTarget.classList.add('icon-delete');
 			alert(
 				t('xwiki', 'An error occured while removing the instance.') + (
 					result?.error
