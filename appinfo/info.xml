@@ -15,7 +15,7 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/xwiki/main/doc/search.png</screenshot>
 	<dependencies>
 		<php min-version="8.0"/>
-		<nextcloud min-version="25" max-version="26"/>
+		<nextcloud min-version="25" max-version="27"/>
 	</dependencies>
 	<navigations>
 		<navigation>
