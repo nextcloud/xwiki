@@ -93,11 +93,7 @@ class SettingsManager {
 
 	public function setUserDisabled(string $url, bool $disabled) {
 		$disabledInstances = $this->getFromUserJSON('disabledInstances', '{}');
-		if (empty($disabledInstances)) {
-			unset($disabledInstances[$url]);
-		} else {
-			$disabledInstances[$url] = $disabled;
-		}
+		$disabledInstances[$url] = $disabled;
 		$this->saveAsUserJSON('disabledInstances', $disabledInstances);
 	}
 
