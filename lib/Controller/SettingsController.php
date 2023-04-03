@@ -54,6 +54,7 @@ class SettingsController extends Controller {
 	}
 
 	/**
+	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	*/
 	public function addToken(): RedirectResponse {
@@ -68,6 +69,9 @@ class SettingsController extends Controller {
 		);
 	}
 
+	/**
+	 * @NoAdminRequired
+	 */
 	public function requestToken(): ?RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$instance = $this->settings->getInstance($instanceUrl);
@@ -95,6 +99,7 @@ class SettingsController extends Controller {
 	}
 
 	/**
+	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	*/
 	public function oidcRedirect(): RedirectResponse {
@@ -175,6 +180,9 @@ class SettingsController extends Controller {
 		);
 	}
 
+	/**
+	 * @NoAdminRequired
+	 */
 	public function deleteToken(): RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$this->settings->setUserToken($instanceUrl, '');
@@ -186,6 +194,9 @@ class SettingsController extends Controller {
 		);
 	}
 
+	/**
+	 * @NoAdminRequired
+	 */
 	public function setDisabled(): JSONResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$value = $this->request->getParam('v') === 'true';
@@ -193,6 +204,9 @@ class SettingsController extends Controller {
 		return new JSONResponse(['ok' => true]);
 	}
 
+	/**
+	 * @NoAdminRequired
+	 */
 	public function setUserValue(): JSONResponse {
 		$key = $this->request->getParam('k');
 		$value = $this->request->getParam('v');
@@ -269,6 +283,9 @@ class SettingsController extends Controller {
 		}
 	}
 
+	/**
+	 * @NoAdminRequired
+	 */
 	public function pingInstance(): JSONResponse {
 		return $this->_pingInstance($this->request->getParam('url'));
 	}
