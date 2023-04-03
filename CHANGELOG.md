@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.5] - 2023-04-03
+
+### Fixed
+
+ - Fixed a bug that prevented users from disabling instances
+ - Non admin users can now save their preferences and get access to XWiki ([#6](https://github.com/nextcloud/xwiki/issues/6))
+
+### Added
+
+ - Support for Nextcloud 26 and 27
+
+### Changed
+
+ - Updated dependencies
+
 ## [0.0.4] - 2023-01-26
 
 ### Fixed
