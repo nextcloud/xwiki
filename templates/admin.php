@@ -28,14 +28,9 @@ function showInstance(IL10N $l, Instance $instance, bool $hidden) {?>
 		<td>
 			<button class="xwiki-admin-ping-instance-btn"><?php p($l->t('Check')); ?></button>
 			<button class="xwiki-admin-save-instance-btn">
-				<span class="icon icon-checkmark"></span>
 				<?php p($l->t('Save')); ?>
 			</button>
-			<button
-				class="xwiki-admin-remove-instance-btn icon icon-delete"
-				aria-label="<?php p($l->t('Remove')); ?>"
-				title="<?php p($l->t('Remove')); ?>"
-			></button>
+			<button class="xwiki-admin-remove-instance-btn" ><?php p($l->t('Remove')); ?></button>
 		</td>
 		<td>
 			<span class="ping-result"></span>
@@ -70,7 +65,6 @@ if (!is_array($instances)) {
 				/>
 			</label>
 			<button id="xwiki-add-instance-btn">
-				<span class="icon icon-add"></span>
 				<?php p($l->t('Add')); ?>
 			</button>
 		</p>

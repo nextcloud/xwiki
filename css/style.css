@@ -20,12 +20,6 @@
 	margin-top: 1rem;
 }
 
-button.xwiki-admin-remove-instance-btn {
-	border: 0px;
-	background-color: transparent;
-	vertical-align: middle;
-}
-
 .xwiki-span-icon {
 	display: inline-block;
 	vertical-align: middle;
