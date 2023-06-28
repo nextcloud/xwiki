@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.0] - 2023-06-28
+
+### Changed
+
+ - The way Nextcloud authenticate to XWiki has been revamped. It does not
+   require the Nextcloud extension for XWiki anymore and uses the standard
+   mechanism provided by the OICD Provider for XWiki. The Nextcloud extension
+   is still advertised because it will be needed for future features.
+ - Removed icons in buttons in the administration section. These icons are not
+   provided by Nextcloud anymore, and adding a dependency on some package to
+   restore them is not worth it.
+
 ## [0.0.6] - 2023-05-15
 
 ### Fixed
