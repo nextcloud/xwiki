@@ -19,13 +19,13 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUser;
 use OCP\Notification\IManager;
-use OCP\PreConditionNotMetException;
 use OCP\Util;
+use OCP\PreConditionNotMetException;
 
 class SettingsController extends Controller {
 	private $userId;
+	private IClientService $clientService;
 	private IL10N $l10n;
-    private IClientService $clientService;
 	private IManager $manager;
 	private IURLGenerator $urlGenerator;
 	private IUserManager $userManager;
@@ -87,9 +87,10 @@ class SettingsController extends Controller {
 			// FIXME check instance
 			return new RedirectResponse(
 				$instanceUrl
-				. '/bin/view/Nextcloud/Tokens?' . http_build_query([
+				. '/oidc/authorization?' . http_build_query([
+					'scope' => 'openid',
 					'response_type' => 'code',
-					'client_id' => $instance->clientId,
+					'client_id' => $this->settings->getClientId(),
 					'state' => $state,
 					'redirect_uri' => $this->settings->getRedirectURI()
 				])
@@ -138,22 +139,22 @@ class SettingsController extends Controller {
 			$client = $this->clientService->newClient();
 			try {
 				$response = $client->post(
-					$instanceURL . '/bin/view/Nextcloud/Tokens/Create', [
+					$instanceURL . '/oidc/token', [
 						'headers'  => [
 							'Content-type' => 'application/x-www-form-urlencoded',
 						],
 						'body' => http_build_query([
 							'grant_type' => 'authorization_code',
+							'client_id' => $this->settings->getClientId(),
 							'code' => $code,
 							'redirect_uri' => $this->settings->getRedirectURI()
 						])
 					]
 				)->getBody();
-			} catch (\Exception) {
+			} catch (\Exception $e) {
 				$response = '';
+				die($e->getResponse()->getBody()->getContents());
 			}
-
-			// die($response); // useful to debug
 
 			$t = json_decode($response, true);
 
@@ -174,8 +175,11 @@ class SettingsController extends Controller {
 
 		return new RedirectResponse(
 			$this->urlGenerator->linkToRoute(
-				'settings.PersonalSettings.index',
-				['section' => 'xwiki']
+				'settings.PersonalSettings.index', [
+					'section' => 'xwiki',
+					'i' => $instance->url,
+					'checkUserLogin' => true
+				]
 			)
 		);
 	}
@@ -236,7 +240,6 @@ class SettingsController extends Controller {
 
 	public function addInstance(): JSONResponse {
 		$url = Instance::fixURL($this->request->getParam('url'));
-		$clientId = trim($this->request->getParam('clientId'));
 
 		if (empty($url)) {
 			return new JSONResponse(
@@ -256,7 +259,7 @@ class SettingsController extends Controller {
 			}
 		}
 
-		$instances[] = ['url' => $url, 'clientId' => $clientId];
+		$instances[] = ['url' => $url];
 
 		$this->settings->saveAsAppJSON('instances', $instances);
 
@@ -287,94 +290,25 @@ class SettingsController extends Controller {
 	 * @NoAdminRequired
 	 */
 	public function pingInstance(): JSONResponse {
-		return $this->_pingInstance($this->request->getParam('url'));
-	}
-
-	private function _getVersion($q): ?string {
-		$matches = null;
-		preg_match('#<version(?:[\s][^>]*)?>([^<]+)</version>#', $q, $matches);
-		$version = $matches[1];
-		return $version;
-	}
-
-	private function _pingInstance($url): JSONResponse {
-		$url = Instance::fixURL($url);
+		$url = Instance::fixURL($this->request->getParam('url'));
 		if (empty($url)) {
 			return new JSONResponse(
-				['error' => 'Mandatory parameter: url'],
+				['ok' => false, 'error' => 'Mandatory parameter: url'],
 				Http::STATUS_BAD_REQUEST
 			);
 		}
 
 		$client = $this->clientService->newClient();
-
-		try {
-			$q = $client->get($url . '/rest')->getBody();
-		} catch (\Exception) {
-			$q = '';
-		}
-
-		if (empty($q)) {
-			$workedWithXWikiAtTheEnd = false;
-			if (!str_ends_with($url, '/xwiki')) {
-				$url .= '/xwiki';
-				$restURL = $url . '/rest';
-				try {
-					$q = $client->get($restURL)->getBody();
-				} catch (\Exception) {
-					$q = '';
-				}
-				if (!empty($q)) {
-					$workedWithXWikiAtTheEnd = true;
-				}
-			}
-
-			if (!$workedWithXWikiAtTheEnd) {
-				return new JSONResponse(
-					['error' => $this->l10n->t('We did not get a successful reply from the instance (URL: %s)', [$restURL])],
-					Http::STATUS_BAD_REQUEST
-				);
-			}
-		}
-
-		$version = $this->_getVersion($q);
-		if (empty($version)) {
-			$workedWithXWikiAtTheEnd = false;
-			if (!str_ends_with($url, '/xwiki')) {
-				$url .= '/xwiki';
-				try {
-					$q = $client->get($url . '/rest')->getBody();
-				} catch (\Exception) {
-					$q = '';
-				}
-				if (!empty($q)) {
-					$version = $this->_getVersion($q);
-					if (!empty($version)) {
-						$workedWithXWikiAtTheEnd = true;
-					}
-				}
-			}
-
-			if (!$workedWithXWikiAtTheEnd) {
-				return new JSONResponse(
-					['error' => $this->l10n->t('We did not understand the instance’s version') . ' ' . $q],
-					Http::STATUS_BAD_REQUEST
-				);
-			}
-		}
-
-		return new JSONResponse([
-			'ok' => true,
-			'version' => $version,
-			'url' => $url,
-			'hasNextcloudApplication' => Instance::hasNextcloudApplication($url, $client)
-		]);
+		$ping = Instance::pingURL($client, $this->$l10n, $url);
+		return new JSONResponse(
+			$ping,
+			$ping['ok'] ? Http::STATUS_OK : Http::STATUS_BAD_REQUEST
+		);
 	}
 
 	public function replaceInstance(): JSONResponse {
 		$oldUrl = $this->request->getParam('oldUrl');
 		$newUrl = $this->request->getParam('newUrl');
-		$clientId = trim($this->request->getParam('clientId'));
 
 		if (empty($oldUrl) || empty($newUrl)) {
 			return new JSONResponse(
@@ -388,7 +322,6 @@ class SettingsController extends Controller {
 		foreach ($instances as &$instance) {
 			if ($instance['url'] === $oldUrl) {
 				$instance['url'] = Instance::fixURL($newUrl);
-				$instance['clientId'] = $clientId;
 				$found = $instance;
 			} else if ($instance['url'] === $newUrl) {
 				return new JSONResponse(

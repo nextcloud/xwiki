@@ -1,6 +1,5 @@
 /* global t */
 import { request } from './common';
-import { getRootUrl } from '@nextcloud/router';
 import { showError, showInfo } from '@nextcloud/dialogs';
 
 (function () {
@@ -17,10 +16,9 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 	function handleInputChange({ currentTarget }) {
 		const element = getParentElement(currentTarget);
 		const urlInput = getUrlInput(element);
-		const clientIdInput = getClientIdInput(element);
 		const v = urlInput.value;
 
-		if (!v || (v === urlInput.dataset.initialValue && clientIdInput.value === clientIdInput.dataset.initialValue)) {
+		if (!v || v === urlInput.dataset.initialValue) {
 			element.classList.remove('xwiki-admin-changed');
 		} else {
 			element.classList.add('xwiki-admin-changed');
@@ -67,6 +65,7 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		const lastElement = list[list.length - 1];
 		const newElement = lastElement.cloneNode(true);
 		newElement.hidden = false;
+		newElement.classList.add('xwiki-admin-changed');
 		bindEventsToElement(newElement);
 		lastElement.parentNode.insertBefore(newElement, lastElement);
 		const urlInput = getUrlInput(newElement);
@@ -159,7 +158,6 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 			pingResult.classList.add('ping-successful');
 			if (result.url && result.url !== url) {
 				urlInput.value = result.url;
-				getParentElement(urlInput).classList.add('xwiki-admin-changed');
 			}
 			integrationResult.dataset.result = result.hasNextcloudApplication;
 			switch (result.hasNextcloudApplication) {
@@ -188,20 +186,10 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		return null;
 	}
 
-	async function getPingResult(element) {
-		const d = element.querySelector('.integration-result').dataset;
-		if ("result" in d) {
-			const res = d.result;
-			return res === "false" ? false : res === "true" ? true : null;
-		}
-		return await pingInstance(element);
-	}
-
-
 	async function handleSaveInstanceClick({ currentTarget }) {
+		hideOnboarding();
 		const element = getParentElement(currentTarget);
 		const urlInput = getUrlInput(element);
-		const clientIdInput = getClientIdInput(element);
 
 		const initialURL = urlInput.dataset.initialValue;
 		let newURL = urlInput.value;
@@ -210,7 +198,7 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 			return;
 		}
 
-		if (initialURL === newURL && clientIdInput.dataset.initialValue === clientIdInput.value) {
+		if (initialURL === newURL) {
 			pingInstance(element);
 			return;
 		}
@@ -228,10 +216,8 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		currentTarget.parentNode.replaceChild(savingSpan, currentTarget);
 
 
-		const clientId = clientIdInput.value.trim();
 		const body = new FormData();
-		body.append('clientId', clientId);
-		body.append('notifyUsers', (clientId !== '' && confirm(t('xwiki', 'Do you want to notify users about this new instance?'))).toString());
+		body.append('notifyUsers', confirm(t('xwiki', 'Do you want to notify users about this new instance?')).toString());
 
 		let result;
 
@@ -246,7 +232,6 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 
 		if (result?.ok) {
 			urlInput.dataset.initialValue = urlInput.value = result.url;
-			clientIdInput.dataset.initialValue = clientIdInput.value = clientId;
 			handleInputChange({currentTarget: urlInput});
 		} else {
 			alert(
@@ -265,10 +250,6 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		return element.querySelector('[name="instance-url"]');
 	}
 
-	function getClientIdInput(element) {
-		return element.querySelector('[name="instance-clientid"]');
-	}
-
 	function getRegisteredInstanceElements() {
 		const elements = document.querySelectorAll('#xwiki-admin-instance-list tr');
 
@@ -283,28 +264,6 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		pingInstance(element);
 	}
 
-	async function handleGenerateClientIdClick({ currentTarget }) {
-		const element = getParentElement(currentTarget);
-		const urlInput = getUrlInput(element);
-		const result = await getPingResult(element);
-		const onboarding = document.getElementById("generate-client-id-onboarding");
-		onboarding.hidden = false;
-		document.getElementById("install-nextcloud-app-advice").hidden = result === true;
-		document.getElementById("nextcloud-app-link").href = urlInput.value + "/bin/admin/XWiki/XWikiPreferences?section=XWiki.Extensions&search=Nextcloud";
-		const link = document.getElementById("generate-client-id-link");
-		const redirectURI = encodeURIComponent(document.getElementById('xwiki-admin-instance-list').dataset.redirectUri);
-		const instanceURI = location.protocol + '//' + location.host + getRootUrl();
-		link.href = urlInput.value + `/bin/view/Nextcloud/Admin/?redirect_uri=${redirectURI}&instance_uri=${instanceURI}`;
-		link.onclick = function () {
-			const clientIdInput = getClientIdInput(element);
-			clientIdInput.value = t('xwiki', 'Paste the client ID here');
-			clientIdInput.focus();
-			clientIdInput.select();
-			onboarding.hidden = true;
-		};
-		location.href = "#generate-client-id-onboarding";
-	}
-
 	function handleUrlBlur({ currentTarget }) {
 		const element = getParentElement(currentTarget);
 		const urlInput = getUrlInput(element);
@@ -315,10 +274,8 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 
 	function bindEventsToElement(element) {
 		const urlInput = getUrlInput(element);
-		const clientIdInput = getClientIdInput(element);
 		urlInput.dataset.initialValue = urlInput.value;
-		clientIdInput.dataset.initialValue = clientIdInput.value;
-		urlInput.onchange = urlInput.oninput = clientIdInput.onchange = clientIdInput.oninput = handleInputChange;
+		urlInput.onchange = urlInput.oninput = handleInputChange;
 		urlInput.onblur = handleUrlBlur;
 
 		const removeBtn = element.querySelector('.xwiki-admin-remove-instance-btn');
@@ -330,18 +287,11 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		const pingBtn = element.querySelector('.xwiki-admin-ping-instance-btn');
 		pingBtn.onclick = handlePingInstanceClick;
 
-		const generateClientIdBtn = element.querySelector('.xwiki-admin-generate-clientid-btn');
-		generateClientIdBtn.onclick = handleGenerateClientIdClick;
-
-		urlInput.onkeydown = clientIdInput.onkeydown = function (e) {
+		urlInput.onkeydown = function (e) {
 			if (e.key === 'Enter') {
 				saveBtn.click();
 			}
 		};
-	}
-
-	function getNewestInstance() {
-		return document.querySelector("#xwiki-admin-instance-list tr:last-child").previousSibling;
 	}
 
 	function hideOnboarding() {
@@ -387,16 +337,9 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 		});
 	}
 
-	for (const btn of document.getElementsByClassName("onboarding-skip-btn")) {
-		btn.onclick = hideOnboarding;
-	}
-
-	const onboardingGenerateButton = document.getElementById("add-instance-onboarding-generate-client-id-btn");
-	if (onboardingGenerateButton) {
-		onboardingGenerateButton.onclick = function () {
-			getNewestInstance().querySelector(".xwiki-admin-generate-clientid-btn").click();
-			hideOnboarding();
-		};
+	const closeBtn = document.getElementById("close-onboarding")
+	if (closeBtn) {
+		closeBtn.onclick = hideOnboarding;
 	}
 
 	for (const getTokenBtn of document.getElementsByClassName('get-token')) {
@@ -406,6 +349,7 @@ import { showError, showInfo } from '@nextcloud/dialogs';
 			const spin = document.createElement('span');
 			spin.className = 'xwiki-span-icon icon icon-loading-small';
 			e.target.parentNode.appendChild(spin);
+			location.href = e.target.href;
 
 			const result = await request('GET', 'settings/pingInstance?url=' + new URL(e.target.href).searchParams.get('i'));
 			if (result?.ok) {

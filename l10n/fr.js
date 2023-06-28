@@ -12,7 +12,6 @@ OC.L10N.register(
 	"Please make sure the Nextcloud application is installed on this wiki.": "Merci de bien vouloir vous assurer que l’application Nextcloud est installée sur ce wiki.",
 	"Do you want to notify users about this new instance?": "Souhaitez-vous informer les utilisateurs et utilisatrices à propos de cette nouvelle instance ?",
 	"We were unable to determine if the Nextcloud application is installed on this wiki. If it is not the case, you will reach a non-existing page. Continue?": "Nous n’avons pas pu déterminer si l’application Nextcloud est installée sur ce wiki. Si ce n’est pas le cas, vous vous trouverez face à une page non existante. Continuer ?",
-	"Paste the client ID here": "Collez le client ID ici",
 	"(make sure the Nextcloud application is installed)": "(assurez-vous que l’application Nextcloud est installée)",
 	"(the Nextcloud app is missing)": "(l’application Nextcloud manque)",
 	"with the Nextcloud app": "avec l’application Nextcloud",

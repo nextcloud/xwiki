@@ -90,13 +90,13 @@
 	margin-bottom: 1rem;
 }
 
-#xwiki-app-content.onboard section, .onboarding {
+#xwiki-app-content.onboard section, .onboarding, .ok {
 	padding: 1em;
 	border-left: 3px solid var(--color-primary);
 	box-shadow: 0 0 6px 0 var(--color-box-shadow);
 }
 
-#xwiki-app-content.onboard section h3 {
+#xwiki-app-content.onboard section h3, .ok h3 {
 	margin-top:0;
 	padding-top:0;
 }
@@ -297,12 +297,16 @@ th {
 	padding-right: 0.5ex;
 }
 
-.get-token.link-button, #generate-client-id-link.link-button {
+#xwiki-user-settings-instance-table a.link-button, .get-token.link-button {
 	padding-top: 0.5ex;
 	padding-bottom: 0.5ex;
 	margin: 0.5ex 0;
 	box-shadow: none;
 	font-weight:bold;
+}
+
+#xwiki-user-settings-instance-table form {
+	display: inline-block;
 }
 
 #instances-notes-th { width: 100%; }

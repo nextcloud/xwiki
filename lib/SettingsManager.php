@@ -4,18 +4,23 @@ namespace OCA\Xwiki;
 
 use OCP\IConfig;
 use OCP\IURLGenerator;
+use OCP\Security\ISecureRandom;
 
 class SettingsManager {
 	private $userId;
+	private ISecureRandom $secureRandom;
 	private IConfig $config;
 	private IURLGenerator $urlGenerator;
-
+	// https://github.com/nextcloud/server/blob/c6ae53096c36e6a475467eaeb6df00ac8d38e4b2/apps/oauth2/lib/Controller/SettingsController.php#L78-L79
+	public const validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	public function __construct(
 		$UserId,
 		IConfig $config,
+		ISecureRandom $secureRandom,
 		IURLGenerator $urlGenerator
 	) {
 		$this->config = $config;
+		$this->secureRandom = $secureRandom;
 		$this->userId = $UserId;
 		$this->urlGenerator = $urlGenerator;
 	}
@@ -44,7 +49,7 @@ class SettingsManager {
 		return $configVal;
 	}
 
-	public function getInstance($url): Instance | null {
+	public function getInstance(string $url): Instance | null {
 		foreach ($this->getFromAppJSON('instances', '[]') as $instance) {
 			if ($instance['url'] === $url) {
 				return Instance::fromArray(
@@ -139,5 +144,26 @@ class SettingsManager {
 
 	public function getRedirectURI() {
 		return $this->urlGenerator->linkToRouteAbsolute('xwiki.settings.oidcRedirect');
+	}
+
+	public function getClientId(): string {
+		// see https://help.nextcloud.com/t/instanceid-a-suitable-client-id-value-for-openid-connect/154552
+		$clientId = $this->config->getAppValue(
+			'xwiki',
+			'clientId',
+			''
+		);
+
+		if (empty($clientId)) {
+			$clientId = $this->secureRandom->generate(64, self::validChars);
+		}
+
+		$this->config->setAppValue(
+			'xwiki',
+			'clientId',
+			$clientId
+		);
+
+		return $clientId;
 	}
 }

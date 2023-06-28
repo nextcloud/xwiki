@@ -10,19 +10,16 @@ class Instance {
 
 	public string $url;
 	public string $token;
-	public string $clientId;
 	public string $disabled;
 
-	public function __construct(string $url, string $token = '', string $clientId = '', bool $disabled = false) {
+	public function __construct(string $url, string $token = '', bool $disabled = false) {
 		$this->url = Instance::fixURL($url);
 		$this->token = $token;
-		$this->clientId = $clientId;
 		$this->disabled = $disabled;
 	}
 
 	public static function fromArray(array $instance, string $token = '', bool $disabled = false): Instance {
-		$clientId = empty($instance['clientId']) ? '' : $instance['clientId'];
-		return new Instance($instance['url'], $token, $clientId, $disabled);
+		return new Instance($instance['url'], $token, $disabled);
 	}
 
 
@@ -43,12 +40,97 @@ class Instance {
 		return rtrim($url, '/');
 	}
 
+	private static function _getVersion($q): ?string {
+		$matches = null;
+		preg_match('#<version(?:[\s][^>]*)?>([^<]+)</version>#', $q, $matches);
+		$version = $matches[1];
+		return $version;
+	}
+
+	public static function pingURL(IClient $client, $l10n, string $url): array {
+		$restURL = $url . '/rest';
+		try {
+			$q = $client->get($restURL)->getBody();
+		} catch (\Exception) {
+			$q = '';
+		}
+
+		if (empty($q)) {
+			$workedWithXWikiAtTheEnd = false;
+			if (!str_ends_with($url, '/xwiki')) {
+				$url .= '/xwiki';
+				$restURL = $url . '/rest';
+				try {
+					$q = $client->get($restURL)->getBody();
+				} catch (\Exception) {
+					$q = '';
+				}
+				if (!empty($q)) {
+					$workedWithXWikiAtTheEnd = true;
+				}
+			}
+
+			if (!$workedWithXWikiAtTheEnd) {
+				return [
+					'ok' => false,
+					'error' => $l10n->t('We did not get a successful reply from the instance (URL: %s)', [$restURL])
+				];
+			}
+		}
+
+		$version = Instance::_getVersion($q);
+		if (empty($version)) {
+			$workedWithXWikiAtTheEnd = false;
+			if (!str_ends_with($url, '/xwiki')) {
+				$url .= '/xwiki';
+				try {
+					$q = $client->get($url . '/rest')->getBody();
+				} catch (\Exception) {
+					$q = '';
+				}
+				if (!empty($q)) {
+					$version = Instance::_getVersion($q);
+					if (!empty($version)) {
+						$workedWithXWikiAtTheEnd = true;
+					}
+				}
+			}
+
+			if (!$workedWithXWikiAtTheEnd) {
+				return [
+					'ok' => false,
+					'error' => $l10n->t('We did not understand the instance’s version') . ' ' . $q
+				];
+			}
+		}
+
+		return [
+			'ok' => true,
+			'version' => $version,
+			'url' => $url,
+			'hasNextcloudApplication' => Instance::hasNextcloudApplication($url, $client)
+		];
+	}
+
+	public function ping(IClient $client, $l10n): array {
+		return Instance::pingURL($client, $l10n, $this->url);
+	}
+
 	public function setURL($url) {
 		$this->url = Instance::fixURL($url);
 	}
 
+	public function isUserLogged(IClient $client): ?bool {
+		$opts = $this->getHTTPClientOpts();
+		try {
+			return !empty($client->get("$this->url/rest", $opts)->getHeader('XWiki-User'));
+		} catch (\Exception) {
+			return null;
+		}
+	}
+
 	private function getRestURL(string $wiki, string $pageOrSpace, string $lastPart): string {
-		$restURL = "$this->url//rest/wikis/$wiki";
+		$restURL = "$this->url/rest/wikis/$wiki";
 		$pageParts = $this->getPageParts($pageOrSpace);
 
 		$lenMinusOne = count($pageParts) - 1;
@@ -182,6 +264,14 @@ class Instance {
 		return $host;
 	}
 
+	private function getHTTPClientOpts() {
+		$opts = [];
+		if (!empty($this->token)) {
+			$opts['headers'] = ['Authorization' => 'Bearer ' . $this->token];
+		}
+		return $opts;
+	}
+
 	public function getFile(string $url, IClient $client): ?string {
 		if (!str_starts_with($url, 'http://') && !str_starts_with($url, 'https://')) {
 			if ($url[0] !== '/') {
@@ -190,13 +280,8 @@ class Instance {
 			$url = $this->url . $url;
 		}
 
-		$opts = [];
-		if (!empty($this->token)) {
-			$opts['headers'] = ['Authorization' => 'Bearer ' . $this->token];
-		}
-
 		try {
-			return $client->get($url, $opts)->getBody();
+			return $client->get($url, $this->getHTTPClientOpts())->getBody();
 		} catch (\Exception) {
 			return null;
 		}

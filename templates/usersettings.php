@@ -33,6 +33,20 @@ if (!is_array($instances)) {
 use OCA\Xwiki\Instance;
 use OCP\IL10N;
 
+function showGetAccessButton(IL10N $l, Instance $instance, $_) { ?>
+	<a
+		class="get-token link-button"
+		href="<?php rawurlencode(
+			p($_['urlGenerator']->linkToRoute('xwiki.settings.requestToken', [
+				'i' => $instance->url,
+				'requesttoken' => $_['requesttoken']
+			]))
+		); ?>"
+	>
+		<?php p($l->t('Get access')); ?>
+	</a><?php
+}
+
 function showInstance(IL10N $l, Instance $instance, $_) {
 	?>
 	<tr>
@@ -51,9 +65,7 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 		</td>
 		<td><?php
 			if (empty($instance->token)) {
-				if (empty($instance->clientId)) {
-					p($l->t('Please ask your administrator to set up this instance to get access.'));
-				} else if ($_['instanceUrl'] === $instance->url && !empty($_['error'])) {
+				if ($_['instanceUrl'] === $instance->url && !empty($_['error'])) {
 					?><span class="xwiki-error"><?php
 					p($l->t('An error happened while getting access to this wiki.'));
 					if ($_['error'] === 'unauthorized_client') {
@@ -64,18 +76,8 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 						p(' ' . $l->t('XWiki didn’t provide an access token.'));
 					}
 					?></span><?php
-				} else { ?>
-					<a
-						class="get-token link-button"
-						href="<?php rawurlencode(
-							p($_['urlGenerator']->linkToRoute('xwiki.settings.requestToken', [
-								'i' => $instance->url,
-								'requesttoken' => $_['requesttoken']
-							]))
-						); ?>"
-					>
-						<?php p($l->t('Get access')); ?>
-					</a><?php
+				} else {
+					showGetAccessButton($l, $instance, $_);
 				}
 			} else { ?>
 				<form action="<?php p(
@@ -87,9 +89,15 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 					)
 				); ?>" method="post">
 					<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']); ?>" />
-					<button name="delete_token" value="true"><?php p($l->t('Log out')); ?></button>
+					<button><?php
+						p($l->t('Log out'));
+					?></button>
 				</form>
+				<a class="link-button" href="?checkUserLogin=1&amp;i=<?php p($instance->url); ?>"><?php
+					p($l->t('Check'));
+				?></a>
 			<?php }?>
+		</td>
 		</td>
 	</tr><?php
 }
@@ -121,6 +129,33 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 				}
 			?>
 		</table>
+		<?php if ($_['userIsLogged'] === false || ($_['userIsLogged'] === null && $_['ping'] !== null)) { ?>
+			<div class="warning">
+				<?php if ($_['ping'] === null || $_['ping']['ok']) { ?>
+					<p><?php p($l->t(
+						'We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to <a>set it up</a> so Nextcloud can access it on your behalf.',
+						[$_['i']->getPrettyName()]
+					)); ?></p><?php
+					showGetAccessButton($l, $i, $_);
+				} else { ?>
+					<p><?php p($l->t(
+						'Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s',
+						[$_['i']->getPrettyName(), $_['ping']['error']]
+					)); ?></p><?php
+				} ?>
+			</div><?php
+		} else if ($_['userIsLogged'] === true) { ?>
+			<div class="ok">
+				<h3><?php p($l->t('All set!')); ?></h3>
+				<p><?php p(
+					$l->t('The wiki %s is ready to be used.', [$_['i']->getPrettyName()])
+				); ?></p>
+			</div><?php
+		} ?>
+		<div class="note">
+			<p><?php p($l->t('If you reach a non-existing document after clicking on “Get access”, this means the wiki must be set up. Please ask its administrator to do it for you.')); ?></p>
+		</div>
+
 		<p>
 			<?php p($l->t('Do you want to access another wiki from Nextcloud? Please ask your administrator to add it!')); ?>
 		</p>
