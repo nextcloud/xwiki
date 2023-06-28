@@ -49,7 +49,7 @@
 	"Get access": "Obtenir l’accès",
 	"We did not get a successful reply from the instance (URL: %s)": "Nous n’avons pas obtenu une réponse positive de l’instance (URL : %s)",
 	"We did not understand the instance’s version": "Nous n’avons pas compris la version de l’instance.",
-	"We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to <a>set it up</a> so Nextcloud can access it on your behalf.": "Impossible de nous identifier en tant que vous sur le wiki à l’adresse %s. Essayez d’obtenir un accès avec le bouton ci-dessous. Si ça ne marche toujours pas, merci de demander de l’aide à la personne qui l’administre. Elle a besoin de le <a>configurer</a> pour permettre à Nextcloud d’y accéder pour vous.",
+	"We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to set it up so Nextcloud can access it on your behalf.": "Impossible de nous identifier en tant que vous sur le wiki à l’adresse %s. Essayez d’obtenir un accès avec le bouton ci-dessous. Si ça ne marche toujours pas, merci de demander de l’aide à la personne qui l’administre. Elle a besoin de le configurer pour permettre à Nextcloud d’y accéder pour vous.",
 	"Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s": "Impossible de contacter le wiki à l’adresse %s. Merci de réessayer plus tard, ou de demander de l’aide à la personne qui l’administre. L’erreur était : %s",
 	"All set!": "C’est tout bon !",
 	"The wiki %s is ready to be used.": "Le wiki %s est prêt à être utilisé",

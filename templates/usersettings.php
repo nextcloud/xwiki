@@ -133,7 +133,7 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 			<div class="warning">
 				<?php if ($_['ping'] === null || $_['ping']['ok']) { ?>
 					<p><?php p($l->t(
-						'We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to <a>set it up</a> so Nextcloud can access it on your behalf.',
+						'We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to set it up so Nextcloud can access it on your behalf.',
 						[$_['i']->getPrettyName()]
 					)); ?></p><?php
 					showGetAccessButton($l, $i, $_);
