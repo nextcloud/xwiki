@@ -1,7 +1,7 @@
 {
 	"name": "xwiki",
 	"description": "XWiki Nextcloud Integration Application",
-	"version": "0.0.6",
+	"version": "0.1.0",
 	"author": "Raphaël Jakse <raphael.jakse@xwiki.com>",
 	"contributors": [
 		"Raphaël Jakse <raphael.jakse@xwiki.com>"
