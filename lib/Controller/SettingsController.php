@@ -22,6 +22,8 @@ use OCP\Notification\IManager;
 use OCP\Util;
 use OCP\PreConditionNotMetException;
 
+use GuzzleHttp\Exception\BadResponseException;
+
 class SettingsController extends Controller {
 	private $userId;
 	private IClientService $clientService;
@@ -151,9 +153,12 @@ class SettingsController extends Controller {
 						])
 					]
 				)->getBody();
-			} catch (\Exception $e) {
+			} catch (BadResponseException $e) {
 				$response = '';
 				die($e->getResponse()->getBody()->getContents());
+			} catch (\Exception $e) {
+				$response = '';
+				die($e->getMessage());
 			}
 
 			$t = json_decode($response, true);
@@ -299,7 +304,7 @@ class SettingsController extends Controller {
 		}
 
 		$client = $this->clientService->newClient();
-		$ping = Instance::pingURL($client, $this->$l10n, $url);
+		$ping = Instance::pingURL($client, $this->l10n, $url);
 		return new JSONResponse(
 			$ping,
 			$ping['ok'] ? Http::STATUS_OK : Http::STATUS_BAD_REQUEST
