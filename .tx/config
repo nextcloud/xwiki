@@ -1,10 +1,10 @@
 [main]
 host     = https://www.transifex.com
-lang_map = th_TH: th, ja_JP: ja, bg_BG: bg, cs_CZ: cs, fi_FI: fi, hu_HU: hu, nb_NO: nb, sk_SK: sk
+lang_map = hu_HU: hu, nb_NO: nb, sk_SK: sk, th_TH: th, ja_JP: ja, bg_BG: bg, cs_CZ: cs, fi_FI: fi
 
 [o:nextcloud:p:nextcloud:r:xwiki]
 file_filter = translationfiles/<lang>/xwiki.po
-source_file = translationfiles/templates/integxwikiration_documenso.pot
+source_file = translationfiles/templates/xwiki.pot
 source_lang = en
 type        = PO
 
