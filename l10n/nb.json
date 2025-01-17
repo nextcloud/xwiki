@@ -1,0 +1,9 @@
+{ "translations": {
+    "Add" : "Legg til",
+    "URL" : "URL",
+    "Actions" : "Handlinger",
+    "Notes" : "Notater",
+    "Preferences" : "Innstillinger",
+    "Use" : "Bruk"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

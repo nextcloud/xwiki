@@ -1,0 +1,6 @@
+{ "translations": {
+    "URL" : "URL-osoite",
+    "Actions" : "Toiminnot",
+    "Preferences" : "Asetukset"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

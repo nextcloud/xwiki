@@ -1,0 +1,8 @@
+{ "translations": {
+    "Add" : "Hozzáadás",
+    "URL" : "URL",
+    "Actions" : "Műveletek",
+    "Notes" : "Jegyzetek",
+    "Preferences" : "Beállítások"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
