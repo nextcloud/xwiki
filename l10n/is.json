@@ -1,0 +1,12 @@
+{ "translations": {
+    "Saving…" : "Vista…",
+    "Save" : "Vista",
+    "Add" : "Bæta við",
+    "URL" : "Slóð",
+    "Actions" : "Aðgerðir",
+    "Notes" : "Minnispunktar",
+    "Preferences" : "Kjörstillingar",
+    "Use" : "Nota",
+    "Access" : "Aðgangur"
+},"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
+}

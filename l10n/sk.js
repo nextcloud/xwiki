@@ -1,12 +1,16 @@
 OC.L10N.register(
     "xwiki",
     {
+    "Saving…" : "Ukladanie...",
     "Save" : "Uložiť",
+    "Remove" : "Odobrať",
     "Add" : "Pridať",
     "URL" : "URL",
     "Actions" : "Akcie",
     "Notes" : "Poznámky",
     "Preferences" : "Nastavenia",
-    "Use" : "Použi"
+    "Log out" : "Odhlásiť sa",
+    "Use" : "Použi",
+    "Access" : "Prístup"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

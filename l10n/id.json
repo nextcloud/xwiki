@@ -1,0 +1,13 @@
+{ "translations": {
+    "Saving…" : "Menyimpan...",
+    "Save" : "Simpan",
+    "Remove" : "Hapus",
+    "Add" : "Tambah",
+    "URL" : "URL",
+    "Actions" : "Tindakan",
+    "Notes" : "Catatan",
+    "Preferences" : "Preferensi",
+    "Log out" : "Keluar",
+    "Use" : "Gunakan"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

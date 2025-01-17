@@ -1,5 +1,9 @@
 { "translations": {
+    "Saving…" : "Salvestamine...",
+    "Save" : "Salvesta",
     "URL" : "URL",
-    "Actions" : "Tegevused"
+    "Actions" : "Tegevused",
+    "Use" : "Kasuta",
+    "Access" : "Ligipääs"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

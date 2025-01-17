@@ -1,6 +1,8 @@
 { "translations": {
     "Save" : "Saklamak",
+    "Remove" : "Aýyrmak",
     "Preferences" : "Saýlamalar",
+    "Log out" : "Hasapdan çykmak",
     "Use" : "Ulanmak"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

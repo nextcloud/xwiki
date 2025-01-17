@@ -1,0 +1,12 @@
+{ "translations": {
+    "Saving…" : "Gemmer...",
+    "Save" : "Gem",
+    "Remove" : "Fjern",
+    "Add" : "Tilføj",
+    "URL" : "URL",
+    "Actions" : "Handlinger",
+    "Notes" : "Noter",
+    "Preferences" : "Indstillinger",
+    "Access" : "Adgang"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

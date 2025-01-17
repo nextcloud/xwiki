@@ -1,0 +1,13 @@
+{ "translations": {
+    "Saving…" : "Kaydediliyor…",
+    "Save" : "Kaydet",
+    "Remove" : "Kaldır",
+    "Add" : "Ekle",
+    "URL" : "Adres",
+    "Actions" : "İşlemler",
+    "Notes" : "Notlar",
+    "Preferences" : "Tercihler",
+    "Log out" : "Oturumu kapat",
+    "Access" : "Erişim"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
+}

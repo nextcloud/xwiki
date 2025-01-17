@@ -1,5 +1,8 @@
 { "translations": {
+    "Save" : "Sekles",
+    "Remove" : "Kkes",
     "Preferences" : "Tiwelhiwin",
+    "Log out" : "Senser",
     "Use" : "Seqdec"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

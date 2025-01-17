@@ -1,0 +1,13 @@
+{ "translations": {
+    "Saving…" : "Gordetzen…",
+    "Save" : "Gorde",
+    "Remove" : "Kendu",
+    "Add" : "Gehitu",
+    "URL" : "URLa",
+    "Actions" : "Ekintzak",
+    "Notes" : "Oharrak",
+    "Preferences" : "Hobespenak",
+    "Log out" : "Saioa itxi",
+    "Access" : "Sarbidea"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

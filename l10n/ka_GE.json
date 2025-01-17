@@ -1,7 +1,11 @@
 { "translations": {
+    "Saving…" : "მიმდინარეობს დამახსოვრება...",
+    "Save" : "შენახვა",
     "URL" : "URL",
     "Actions" : "მოქმედებები",
     "Notes" : "ჩანაწერები",
-    "Use" : "მოხმარება"
+    "Log out" : "გამოსვლა",
+    "Use" : "მოხმარება",
+    "Access" : "წვდომა"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

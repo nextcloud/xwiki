@@ -1,6 +1,16 @@
 OC.L10N.register(
     "xwiki",
     {
-    "Preferences" : "Preferencias"
+    "Saving…" : "Guardando...",
+    "Save" : "Guardar",
+    "Remove" : "Borrar",
+    "Add" : "Añadir",
+    "URL" : "URL",
+    "Actions" : "Acciones",
+    "Notes" : "Notas",
+    "Preferences" : "Preferencias",
+    "Log out" : "Cerrar sesión",
+    "Use" : "Usar",
+    "Access" : "Acceso"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

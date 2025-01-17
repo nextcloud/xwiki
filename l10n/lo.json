@@ -1,0 +1,8 @@
+{ "translations": {
+    "Save" : "ບັນທຶກ",
+    "Remove" : "ຍ້າຍອອກ",
+    "Preferences" : "ການເລືອກ",
+    "Log out" : "ອອກຈາກລະບົບ",
+    "Use" : "ໃຊ້"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

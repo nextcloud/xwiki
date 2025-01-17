@@ -1,0 +1,14 @@
+{ "translations": {
+    "Saving…" : "Opslaan...",
+    "Save" : "Opslaan",
+    "Remove" : "Verwijderen",
+    "Add" : "Toevoegen",
+    "URL" : "URL",
+    "Actions" : "Acties",
+    "Notes" : "Notities",
+    "Preferences" : "Voorkeuren",
+    "Log out" : "Afmelden",
+    "Use" : "Gebruiken",
+    "Access" : "Toegang"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -1,0 +1,10 @@
+{ "translations": {
+    "Saving…" : "хадгалж байна",
+    "Save" : "Хадгалах",
+    "Add" : "Нэмэх",
+    "URL" : "URL",
+    "Actions" : "Үйл ажиллагаа",
+    "Notes" : "Шинэ ",
+    "Use" : "Хэрэглээ"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
