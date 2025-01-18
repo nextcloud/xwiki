@@ -6,9 +6,10 @@
     "URL" : "URL",
     "Actions" : "Aktionen",
     "Notes" : "Notizen",
+    "Save as PDF" : "Als PDF speichern",
     "Preferences" : "Einstellungen",
     "Log out" : "Abmelden",
-    "Use" : "Verwende bestehenden",
+    "Use" : "Verwenden",
     "Access" : "Zugriff"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

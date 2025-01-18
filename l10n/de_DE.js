@@ -8,9 +8,10 @@ OC.L10N.register(
     "URL" : "URL",
     "Actions" : "Aktionen",
     "Notes" : "Notizen",
+    "Save as PDF" : "Als PDF speichern",
     "Preferences" : "Einstellungen",
     "Log out" : "Abmelden",
-    "Use" : "Verwende bestehenden",
+    "Use" : "Verwenden",
     "Access" : "Zugriff"
 },
 "nplurals=2; plural=(n != 1);");
