@@ -12,6 +12,8 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\NotFoundResponse;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\Http\Client\IClientService;
 use OCP\IL10N;
 use OCP\IRequest;
@@ -55,10 +57,8 @@ class SettingsController extends Controller {
 		$this->settings = $settings;
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	*/
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function addToken(): RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$token = $this->request->getParam('token');
@@ -71,9 +71,7 @@ class SettingsController extends Controller {
 		);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function requestToken(): ?RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$instance = $this->settings->getInstance($instanceUrl);
@@ -101,10 +99,8 @@ class SettingsController extends Controller {
 		return null;
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	*/
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function oidcRedirect(): RedirectResponse {
 		$state = $this->request->getParam('state');
 		$code = $this->request->getParam('code');
@@ -189,9 +185,7 @@ class SettingsController extends Controller {
 		);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function deleteToken(): RedirectResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$this->settings->setUserToken($instanceUrl, '');
@@ -203,9 +197,7 @@ class SettingsController extends Controller {
 		);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function setDisabled(): JSONResponse {
 		$instanceUrl = $this->request->getParam('i');
 		$value = $this->request->getParam('v') === 'true';
@@ -213,9 +205,7 @@ class SettingsController extends Controller {
 		return new JSONResponse(['ok' => true]);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function setUserValue(): JSONResponse {
 		$key = $this->request->getParam('k');
 		$value = $this->request->getParam('v');
@@ -291,9 +281,7 @@ class SettingsController extends Controller {
 		}
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function pingInstance(): JSONResponse {
 		$url = Instance::fixURL($this->request->getParam('url'));
 		if (empty($url)) {

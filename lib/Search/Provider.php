@@ -25,6 +25,8 @@ class Provider implements IProvider {
 	public SettingsManager $settings;
 	private IClientService $clientService;
 
+	private IURLGenerator $urlGenerator;
+
 	public function __construct(SettingsManager $settings, IClientService $clientService, IURLGenerator $urlGenerator) {
 		$this->settings = $settings;
 		$this->clientService = $clientService;
