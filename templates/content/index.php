@@ -174,7 +174,9 @@
 				?></p>
 			</section>
 			<section>
-				<h3> Mode intégré </h3>
+				<h3 id="xwiki-integrated-mode">
+					<span><?php p($l->t('Integrated Mode')); ?></span>
+				</h3>
 				<p><?php
 					if ($_['integratedMode']) {
 						p($l->t('You can start browsing XWiki content using the menu on the left.'));
