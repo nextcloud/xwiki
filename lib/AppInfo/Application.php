@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\Xwiki\AppInfo;
 
 use OCA\Xwiki\Search\Provider;
+use OCA\Xwiki\Reference\XWikiReferenceProvider;
 use OCA\Xwiki\XWikiNotifier;
 use OCP\AppFramework\App;
 use OCP\Notification\IManager;
@@ -21,6 +22,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerSearchProvider(Provider::class);
+		$context->registerReferenceProvider(XWikiReferenceProvider::class);
 		$context->registerNotifierService(XWikiNotifier::class);
 	}
 
