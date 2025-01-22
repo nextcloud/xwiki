@@ -12,7 +12,6 @@ OC.L10N.register(
     "Notes" : "Notizen",
     "Preferences" : "Einstellungen",
     "Log out" : "Abmelden",
-    "Use" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
     "Access" : "Zugriff"
 },
 "nplurals=2; plural=(n != 1);");
