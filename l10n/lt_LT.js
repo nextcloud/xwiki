@@ -1,16 +1,25 @@
 OC.L10N.register(
     "xwiki",
     {
+    "Could not get the content of this page." : "Nepavyko gauti šio puslapio turinio.",
+    "Could not create the file." : "Nepavyko sukurti failo.",
+    "Could not find the content of this page." : "Nepavyko rasti šio puslapio turinio.",
+    "Removing…" : "Šalinama…",
+    "Please try again later." : "Bandykite dar kartą.",
     "Saving…" : "Įrašoma…",
+    "An error occured while saving the instance." : "Įrašant egzempliorių įvyko klaida.",
+    "Sorry, could not save the settings" : "Apgailestaujame, nepavyko įrašyti nustatymų",
     "Save" : "Įrašyti",
     "Remove" : "Šalinti",
+    "URL:" : "URL:",
     "Add" : "Pridėti",
     "URL" : "URL",
     "Actions" : "Veiksmai",
     "Notes" : "Užrašai",
     "Preferences" : "Nuostatos",
     "Log out" : "Atsijungti",
-    "Use" : "Naudok",
-    "Access" : "Prieiga"
+    "Use" : "Naudoti",
+    "Access" : "Prieiga",
+    "All set!" : "Viskas paruošta!"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");
