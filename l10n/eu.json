@@ -16,15 +16,26 @@
     "You can now search and browse pages from %s. If you have an account on this wiki, make sure to log in so you can search pages you have access to!" : "Orain %s-n orrialdeak bilatu eta arakatu ditzakezu. Wiki honetan kontu bat baduzu, ziurtatu saioa hasi duzula, sarbidea duzun orriak bilatu ahal izateko!",
     "XWiki Integration for Nextcloud" : "Nextcloud-erako XWiki integrazioa",
     "This application allows you to search and display your XWiki content right from Nextcloud. XWiki is a powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki. Note: full functionality requires the Nextcloud extension on XWiki (11.10 or later required)." : "Aplikazio honek zure XWiki edukia bilatu eta bistaratzeko aukera ematen dizu Nextcloud-etik zuzenean. XWiki garapen-plataforma indartsua da, wikia zure behar zehatzetara pertsonalizatzeko aukera ematen duena. Datu egituratuak eta orrialde barruko script-ak erabiliz makroak eta aplikazioak sor ditzakezu zure wikiaren gaitasunak zabaltzeko. Oharra: funtzionalitate osoak Nextcloud luzapena behar du XWiki-n (11.10 bertsioa edo berriagoa behar da).",
+    "Removing…" : "Ezabatzen...",
+    "An error occured while removing the instance." : "Errore bat gertatu da instantzia ezabatzean.",
+    "Please try again later." : "Saiatu berriro geroago, mesedez.",
     "Saving…" : "Gordetzen…",
+    "An error occured while saving the instance." : "Errore bat gertatu da instantzia gordetzean.",
     "Save" : "Gorde",
     "Remove" : "Kendu",
+    "URL:" : "URL:",
     "Add" : "Gehitu",
     "URL" : "URLa",
     "Actions" : "Ekintzak",
     "Notes" : "Oharrak",
+    "You are adding a wiki!" : "Wiki bat gehitzen ari duzu!",
     "Preferences" : "Hobespenak",
+    "Use this wiki (%s)" : "Erabili wiki hau (%s)",
+    "An error happened while getting access to this wiki." : "Errore bat gertatu da wiki honetara sarbidea lortzen.",
+    "You cancelled the access." : "Sarbidea bertan behera utzi duzu.",
     "Log out" : "Saioa itxi",
-    "Access" : "Sarbidea"
+    "Use" : "Erabili",
+    "Access" : "Sarbidea",
+    "All set!" : "Dena ezarrita!"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
