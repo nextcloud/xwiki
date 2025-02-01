@@ -82,14 +82,14 @@ OC.L10N.register(
     "Log out" : "Abmelden",
     "Wikis and Access" : "Wikis und Zugriff",
     "When you search something, Nextcloud will fetch results from the following wikis. By default, Nextcloud is not logged to these wikis, so results will be what guests see." : "Bei der Suche ruft Nextcloud Ergebnisse aus den folgenden Wikis ab. Standardmäßig ist Nextcloud bei diesen Wikis nicht angemeldet, sodass nur Ergebnisse ausgegeben werden, die auch Gästen angezeigt werden.",
-    "If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access." : "Wenn du ein XWiki-Konto hast, kannst du auf „Zugriff erhalten“ klicken, damit Nextcloud dir Ergebnisse für alles, auf das du Zugriff hast, anzeigen kann.",
-    "You can disable wikis by unchecking their “Use” checkbox. Search results from these wikis will not be displayed." : "Wikis können durch deaktivieren des Kontrollkästchens „Verwenden“ deaktiviert werden. Suchergebnisse aus diesen Wikis werden nicht angezeigt.",
+    "If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access." : "Wenn du ein XWiki-Konto hast, kannst du auf \"Zugriff erhalten\" klicken, damit Nextcloud dir Ergebnisse für alles, auf das du Zugriff hast, anzeigen kann.",
+    "You can disable wikis by unchecking their “Use” checkbox. Search results from these wikis will not be displayed." : "Wikis können durch deaktivieren des Kontrollkästchens \"Verwenden\" deaktiviert werden. Suchergebnisse aus diesen Wikis werden nicht angezeigt.",
     "Use" : "Verwenden",
     "Access" : "Zugriff",
     "We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to set it up so Nextcloud can access it on your behalf." : "Wir konnten uns in deinem Namen im Wiki unter %s nicht anmelden. Versuche, mit der Schaltfläche unten Zugriff zu erhalten. Wenn es immer noch nicht funktioniert, bitte die Administration um Hilfe. Sie muss einrichten, dass Nextcloud in deinen Namen darauf zugreifen kann.",
     "Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s" : "Verbindung zum Wiki %s konnte nicht hergestellt werden. Bitte versuche es später noch einmal oder bitte die Administration um Hilfe. Der Fehler war: %s",
     "All set!" : "Alles fertig!",
     "The wiki %s is ready to be used." : "Das Wiki %s ist einsatzbereit.",
-    "If you reach a non-existing document after clicking on “Get access”, this means the wiki must be set up. Please ask its administrator to do it for you." : "Wenn du nach dem Klicken auf „Zugriff erhalten“ zu einem nicht vorhandenen Dokument gelangen, bedeutet dies, dass das Wiki eingerichtet werden muss. Bitte die Administration, dies für dich vorzunehmen."
+    "If you reach a non-existing document after clicking on “Get access”, this means the wiki must be set up. Please ask its administrator to do it for you." : "Wenn du nach dem Klicken auf \"Zugriff erhalten\" zu einem nicht vorhandenen Dokument gelangen, bedeutet dies, dass das Wiki eingerichtet werden muss. Bitte die Administration, dies für dich vorzunehmen."
 },
 "nplurals=2; plural=(n != 1);");
