@@ -5,7 +5,7 @@
 	<name>XWiki</name>
 	<summary>XWiki Integration for Nextcloud</summary>
 	<description><![CDATA[This application allows you to search and display your XWiki content right from Nextcloud. XWiki is a powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki. Note: full functionality requires the Nextcloud extension on XWiki (11.10 or later required).]]></description>
-	<version>0.1.2</version>
+	<version>1.0.0</version>
 	<licence>agpl</licence>
 	<author mail="raphael.jakse@xwiki.com" homepage="https://xwiki.org">Raphaël Jakse</author>
 	<category>integration</category>
