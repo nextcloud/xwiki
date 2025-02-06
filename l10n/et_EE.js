@@ -5,6 +5,7 @@ OC.L10N.register(
     "Save" : "Salvesta",
     "URL" : "URL",
     "Actions" : "Tegevused",
+    "Preferences" : "Eelistused",
     "Use" : "Kasuta",
     "Access" : "Ligipääs"
 },
