@@ -6,7 +6,7 @@ OC.L10N.register(
     "Remove" : "Remover",
     "Add" : "Adicionar",
     "URL" : "URL",
-    "Actions" : "Acções",
+    "Actions" : "Ações",
     "Notes" : "Notas",
     "Preferences" : "Preferências",
     "Log out" : "Sair",
