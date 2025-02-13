@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Saving…" : "Vista…",
     "Save" : "Vista",
+    "Remove" : "Fjarlægja",
     "Add" : "Bæta við",
     "URL" : "Slóð",
     "Actions" : "Aðgerðir",
