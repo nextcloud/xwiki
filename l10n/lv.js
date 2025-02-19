@@ -8,6 +8,7 @@ OC.L10N.register(
     "URL" : "URL",
     "Actions" : "Darbības",
     "Notes" : "Piezīmes",
+    "Please ask your administrator to add some." : "Lūgums vaicāt savam pārvaldītājam, lai pievienotu kādu.",
     "Log out" : "Izrakstīties",
     "Use" : "Izmantot"
 },
