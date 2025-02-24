@@ -34,6 +34,14 @@
 	vertical-align: middle;
 }
 
+#xwiki-nav {
+  margin-left: 0.5ex;
+}
+
+#xwiki-nav ul {
+  margin-left: 1em;
+}
+
 #xwiki-actions {
 	list-style: none;
 	margin: 0;
