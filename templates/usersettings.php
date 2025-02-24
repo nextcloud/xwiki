@@ -82,10 +82,10 @@ function showInstance(IL10N $l, Instance $instance, $_) {
 			} else { ?>
 				<form action="<?php p(
 					rawurlencode(
-						p($_['urlGenerator']->linkToRoute('xwiki.settings.deleteToken', [
+						$_['urlGenerator']->linkToRoute('xwiki.settings.deleteToken', [
 							'i' => $instance->url,
 							'requesttoken' => $_['requesttoken']
-						]))
+						])
 					)
 				); ?>" method="post">
 					<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']); ?>" />
