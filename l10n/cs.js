@@ -18,6 +18,7 @@ OC.L10N.register(
     "New wiki added!" : "Nová wiki přidána!",
     "You can now search and browse pages from %s. If you have an account on this wiki, make sure to log in so you can search pages you have access to!" : "Nyní je možné vyhledávat a procházet stránky přímo z %s. Pokud na této wiki máte účet, přihlaste se, abyste mohli prohledávat stránky, ke kterým máte přístup!",
     "XWiki Integration for Nextcloud" : "Napojení na XWiki pro Nextcloud",
+    "This application allows you to search and display your XWiki content right from Nextcloud. XWiki is a powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki. Note: full functionality requires the Nextcloud extension on XWiki (11.10 or later required)." : "Tato aplikace umožňuje vyhledávat v a zobrazovat obsah z XWiki přímo z Nextcloud. XWiki je mocná vývojová platforma, která umožnuje přizpůsobit si wiki konkrétním potřebám. Použitím strukturovaných dat a skriptování v rámci stránek je možné vytvářet makra a aplikace, které umožňují rozšiřovat schopnosti wiki. Pozn.: pro plnou funkčnost  je třeba, aby na XWiki bylo nainstalované rozšíření pro Nextcloud (v 11.10 nebo novější).",
     "Where do you want to save the PDF?" : "Kam chcete PDF uložit?",
     "The page has been successfully saved!" : "Stránka byla úspěšně uložena!",
     "An error occurred while saving the page:" : "Došlo k chybě při ukládání stránky:",
