@@ -2,6 +2,7 @@ OC.L10N.register(
     "xwiki",
     {
     "Saving…" : "Saving…",
+    "Save" : "Saqlash",
     "Remove" : "Remove",
     "Add" : "Add",
     "Actions" : "Actions",
