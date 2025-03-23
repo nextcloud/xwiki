@@ -41,6 +41,7 @@ OC.L10N.register(
     "URL" : "URL",
     "Actions" : "Ações",
     "Notes" : "Notas ",
+    "Got it" : "Entendi",
     "Save as PDF" : "Salvar como PDF",
     "Integrated Mode" : "Modo Integrado",
     "Preferences" : "Preferências",
