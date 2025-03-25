@@ -6,6 +6,7 @@ OC.L10N.register(
     "URL" : "URL",
     "Actions" : "Tegevused",
     "Preferences" : "Eelistused",
+    "Log out" : "Logi välja",
     "Use" : "Kasuta",
     "Access" : "Ligipääs"
 },
