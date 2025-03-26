@@ -81,9 +81,15 @@ OC.L10N.register(
     "XWiki didn’t provide an access token." : "O XWiki não forneceu um token de acesso.",
     "Log out" : "Sair",
     "Wikis and Access" : "Wikis e Acessos",
+    "When you search something, Nextcloud will fetch results from the following wikis. By default, Nextcloud is not logged to these wikis, so results will be what guests see." : "Quando você pesquisar algo, o Nextcloud buscará resultados nas seguintes wikis. Por padrão, o Nextcloud não está logado nessas wikis, portanto, os resultados serão os que os visitantes veem.",
+    "If you have an XWiki account, you can click on “Get access” so Nextcloud will be able to give you results for the things you can access." : "Se você tiver uma conta XWiki, poderá clicar em \"Obter acesso\" para que o Nextcloud possa fornecer os resultados das coisas que você pode acessar.",
+    "You can disable wikis by unchecking their “Use” checkbox. Search results from these wikis will not be displayed." : "Você pode desativar as wikis desmarcando a caixa de seleção \"Usar\". Os resultados de pesquisa dessas wikis não serão exibidos.",
     "Use" : "Usar",
     "Access" : "Acesso",
+    "We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to set it up so Nextcloud can access it on your behalf." : "Não foi possível fazer a autenticação em seu nome no wiki em %s. Tente obter acesso com o botão abaixo. Se ainda assim não funcionar, peça ajuda ao administrador do site. Ele precisa configurá-lo para que o Nextcloud possa acessá-lo em seu nome.",
+    "Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s" : "Não foi possível entrar em contato com o wiki em %s. Tente novamente mais tarde ou peça ajuda ao administrador. O erro foi: %s",
     "All set!" : "Tudo configurado!",
-    "The wiki %s is ready to be used." : "O wiki %s está pronto para ser usado."
+    "The wiki %s is ready to be used." : "O wiki %s está pronto para ser usado.",
+    "If you reach a non-existing document after clicking on “Get access”, this means the wiki must be set up. Please ask its administrator to do it for you." : "Se você chegar a um documento inexistente depois de clicar em \"Obter acesso\", isso significa que o wiki precisa ser configurado. Solicite ao administrador que faça isso para você."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
