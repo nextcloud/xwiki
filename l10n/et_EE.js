@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Saving…" : "Salvestamine...",
     "Save" : "Salvesta",
+    "Remove" : "Eemalda",
     "URL" : "URL",
     "Actions" : "Tegevused",
     "Preferences" : "Eelistused",
