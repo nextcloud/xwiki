@@ -6,6 +6,7 @@ OC.L10N.register(
     "Remove" : "Eemalda",
     "URL" : "URL",
     "Actions" : "Tegevused",
+    "Notes" : "Märkmed",
     "Preferences" : "Eelistused",
     "Log out" : "Logi välja",
     "Use" : "Kasuta",
