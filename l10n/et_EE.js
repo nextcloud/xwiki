@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Salvestamine...",
     "Save" : "Salvesta",
     "Remove" : "Eemalda",
+    "Add" : "Lisa",
     "URL" : "URL",
     "Actions" : "Tegevused",
     "Notes" : "Märkmed",
