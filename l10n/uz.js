@@ -6,6 +6,7 @@ OC.L10N.register(
     "Remove" : "Remove",
     "Add" : "Add",
     "Actions" : "Actions",
-    "Notes" : "Notes"
+    "Notes" : "Notes",
+    "Preferences" : "Afzalliklar"
 },
 "nplurals=1; plural=0;");
