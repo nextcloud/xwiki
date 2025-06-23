@@ -5,6 +5,7 @@ OC.L10N.register(
     "Add" : "Ongeza",
     "URL" : "Url",
     "Actions" : "Utendekaji",
+    "Notes" : "Madokezo",
     "Preferences" : "Vitu vya upendeleo",
     "Log out" : "Ondoka"
 },
