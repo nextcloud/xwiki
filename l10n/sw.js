@@ -2,6 +2,7 @@ OC.L10N.register(
     "xwiki",
     {
     "Save" : "Hifadhi",
+    "Remove" : "Ondoa",
     "Add" : "Ongeza",
     "URL" : "Url",
     "Actions" : "Utendekaji",
