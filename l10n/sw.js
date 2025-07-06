@@ -1,6 +1,7 @@
 OC.L10N.register(
     "xwiki",
     {
+    "Saving…" : "Inahifadhi...",
     "Save" : "Hifadhi",
     "Remove" : "Ondoa",
     "Add" : "Ongeza",
