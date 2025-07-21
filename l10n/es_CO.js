@@ -6,6 +6,7 @@ OC.L10N.register(
     "Add" : "Guardar",
     "Actions" : "Acciones",
     "Notes" : "Notas",
+    "Preferences" : "Preferencias",
     "Log out" : "Cerrar sesión",
     "Use" : "Usar",
     "Access" : "Acceso"
