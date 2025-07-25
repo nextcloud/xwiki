@@ -3,8 +3,9 @@ OC.L10N.register(
     {
     "Saving…" : "Saving…",
     "Save" : "Saqlash",
-    "Remove" : "Remove",
+    "Remove" : "O'chirish",
     "Add" : "Add",
+    "URL" : "URL",
     "Actions" : "Actions",
     "Notes" : "Notes",
     "Preferences" : "Afzalliklar"
