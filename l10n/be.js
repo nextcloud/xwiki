@@ -2,6 +2,7 @@ OC.L10N.register(
     "xwiki",
     {
     "Save" : "Захаваць",
+    "Remove" : "Выдаліць",
     "Add" : "Дадаць",
     "URL" : "URL-адрас",
     "Actions" : "Дзеянні",
