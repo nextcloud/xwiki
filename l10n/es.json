@@ -35,6 +35,7 @@
     "Sorry, could not save the settings" : "Lo sentimos, no se pudo guardar la configuración",
     "This wiki does not have the Nextcloud application. This is needed to get access to it from Nextcloud. Please ask its administrator to install this extension." : "Esta wiki no tiene la aplicación Nextcloud. Esto es necesario para obtener acceso desde NextCloud. Por favor, pide a su administrador que instale esta extensión.",
     "We could not determine if this wiki has the Nextcloud application. This is needed to get access to it from Nextcloud. If you land on a non existing page, it means it is not installed, in which case please ask the administrator of the wiki to install this extension." : "No pudimos determinar si esta wiki tiene la aplicación Nextcloud. Esto es necesario para obtener acceso desde Nextcloud. Si llegas a una página no existente, significa que no está instalado, en cuyo caso, solicita al administrador de la wiki que instale esta extensión.",
+    "Check" : "Verificar",
     "Save" : "Guardar",
     "Remove" : "Quitar",
     "XWiki Instances" : "Instancias de XWiki",
