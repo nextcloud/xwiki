@@ -1,6 +1,7 @@
 OC.L10N.register(
     "xwiki",
     {
+    "You are not permitted to create this file." : "Вам не разрешено создавать этот файл.",
     "Saving…" : "Сохраняется…",
     "Save" : "Сохранить",
     "Remove" : "Исключить",
@@ -8,7 +9,9 @@ OC.L10N.register(
     "URL" : "URL",
     "Actions" : "Действия",
     "Notes" : "Заметки",
+    "You can skip this step." : "Вы можете пропустить этот шаг.",
     "Preferences" : "Свойства",
+    "By default, you are redirected to XWiki whenever you click on a search result. If you enable the integrated mode, XWiki results will be displayed within Nextcloud. This can lead to a more seamless experience, but this mode is experimental and there can be display issues." : "По умолчанию вы перенаправляетесь в XWiki при каждом нажатии на результат поиска. Если включить интегрированный режим, результаты XWiki будут отображаться в Nextcloud. Это может повысить удобство работы, но этот режим экспериментальный, и могут возникнуть проблемы с отображением.",
     "Log out" : "Выйти",
     "Access" : "Доступ",
     "All set!" : "Все готово!",
