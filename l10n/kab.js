@@ -3,6 +3,8 @@ OC.L10N.register(
     {
     "Save" : "Sekles",
     "Remove" : "Kkes",
+    "URL" : "URL",
+    "Actions" : "Tigawin",
     "Preferences" : "Tiwelhiwin",
     "Log out" : "Senser",
     "Use" : "Seqdec"
