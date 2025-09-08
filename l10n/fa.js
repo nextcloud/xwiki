@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "در حال ذخیره",
     "Save" : "ذخیره",
     "Remove" : "حذف",
+    "Add" : "افزودن",
     "URL" : "آدرس",
     "Actions" : "کنش‌ها",
     "Notes" : "یادداشت‌ها",
