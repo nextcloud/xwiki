@@ -7,6 +7,7 @@ OC.L10N.register(
     "URL" : "URL-адрас",
     "Actions" : "Дзеянні",
     "Notes" : "Нататкі",
+    "XWiki didn’t provide an access token." : "XWiki не прадаставіў токен доступу.",
     "Log out" : "Выйсці",
     "Access" : "Доступ"
 },
