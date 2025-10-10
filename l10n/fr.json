@@ -1,7 +1,11 @@
 { "translations": {
+    "This XWiki instance was not found in the admin settings. Please contact your administrator." : "Cette instance Xwiki n'a pas été trouvée dans les paramètres d'administration. Veuillez contacter votre administrateur.",
     "Please provide a page name in the p parameter." : "Veuillez indiquer un nom de page pour le paramètre p.",
+    "Please provide a path in the save_path parameter." : "Veuillez fournir un chemin pour le paramètre save_path.",
+    "Could not get the content of this page." : "Pas de contenu obtenu pour cette page.",
     "You are not permitted to create this file." : "Vous n'êtes pas autorisés à créer ce fichier.",
     "Could not create the file." : "Le fichier n'a pas pu être crééé",
+    "Could not find the content of this page." : "Pas de contenu trouvé pour cette page.",
     "Could not find the instance you are trying to replace. This should not happen, please report a bug." : "Impossible de trouver l’instance que vous cherchez à remplacer. Cela ne devrait pas arriver, merci de bien vouloir écrire un rapport de bug.",
     "We did not get a successful reply from the instance (URL: %s)" : "Nous n’avons pas obtenu une réponse positive de l’instance (URL: %s)",
     "We did not understand the instance’s version" : "Nous n’avons pas compris la version de l’instance.",
