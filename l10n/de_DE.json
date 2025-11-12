@@ -15,7 +15,7 @@
     "XWiki" : "XWiki",
     "New wiki added!" : "Neues Wiki hinzugefügt!",
     "You can now search and browse pages from %s. If you have an account on this wiki, make sure to log in so you can search pages you have access to!" : "Sie können jetzt Seiten von %s durchsuchen und durchstöbern. Wenn Sie ein Konto in diesem Wiki haben, müssen Sie sich anmelden, damit Sie Seiten durchsuchen können, auf die Sie Zugriff haben!",
-    "XWiki Integration for Nextcloud" : "XWiki-Integration für Nextcloud",
+    "XWiki Integration for Nextcloud" : "XWiki-Einbindung für Nextcloud",
     "This application allows you to search and display your XWiki content right from Nextcloud. XWiki is a powerful development platform that allows you to customize the wiki to your specific needs. Using structured data and in-page-scripting you can create macros and applications that allow you to extend the capabilities of your wiki. Note: full functionality requires the Nextcloud extension on XWiki (11.10 or later required)." : "Mit dieser Anwendung können Sie Ihren XWiki-Inhalt direkt aus Nextcloud heraus suchen und anzeigen. XWiki ist eine leistungsstarke Entwicklungsplattform, mit der Sie das Wiki an Ihre spezifischen Anforderungen anpassen können. Mithilfe strukturierter Daten und In-Page-Scripting können Sie Makros und Anwendungen erstellen, mit denen Sie die Funktionen Ihres Wikis erweitern können. Hinweis: Für die volle Funktionalität ist die Nextcloud-Erweiterung für XWiki erforderlich (11.10 oder höher erforderlich).",
     "Where do you want to save the PDF?" : "Wohin soll das PDF gespeichert werden?",
     "The page has been successfully saved!" : "Die Seite wurde gespeichert!",
