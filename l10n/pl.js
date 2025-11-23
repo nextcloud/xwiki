@@ -1,13 +1,17 @@
 OC.L10N.register(
     "xwiki",
     {
+    "XWiki" : "XWiki",
+    "Removing…" : "Usuwanie…",
     "Saving…" : "Zapisywanie…",
     "Save" : "Zapisz",
     "Remove" : "Usuń",
+    "URL:" : "URL:",
     "Add" : "Dodaj",
     "URL" : "Adres URL",
     "Actions" : "Akcje",
     "Notes" : "Notatki",
+    "Save as PDF" : "Zapisz jako PDF",
     "Preferences" : "Preferencje",
     "Log out" : "Wyloguj się",
     "Use" : "Uzyj",
