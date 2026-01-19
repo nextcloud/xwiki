@@ -10,6 +10,7 @@ OC.L10N.register(
     "Notes" : "Catatan",
     "Preferences" : "Preferensi",
     "Log out" : "Keluar",
-    "Use" : "Gunakan"
+    "Use" : "Gunakan",
+    "Access" : "Akses"
 },
 "nplurals=1; plural=0;");
