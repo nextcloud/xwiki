@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.1]
 
-- Support ofr Nextcloud 34
+- Support for Nextcloud 34
 - Fix colors of the ping text displayed when adding an XWiki instance
 
 ## [1.0.0]
