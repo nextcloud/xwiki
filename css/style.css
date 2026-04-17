@@ -26,8 +26,16 @@
 	padding-right: 1ex;
 }
 
-.ping-successful { color: var(--color-success); }
-.ping-failure, .xwiki-error { color: var(--color-error); }
+.ping-successful {
+	background-color: var(--color-success, #D8F3DA);
+	color: var(--color-text-success, #066e03);
+	padding: 0.5ex;
+}
+.ping-failure, .xwiki-error {
+	background-color: var(--color-error, #FFE7E7);
+	color: var(--color-text-error, #bf0000);
+	padding: 0.5ex;
+}
 
 #xwiki-nav .icon, #xwiki-actions .icon {
 	display: inline-block;
