@@ -86,7 +86,7 @@
     "Access" : "Accès",
     "We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to set it up so Nextcloud can access it on your behalf." : "Impossible de nous identifier en tant que vous sur le wiki à l’adresse %s. Essayez d’obtenir un accès avec le bouton ci-dessous. Si ça ne marche toujours pas, merci de demander de l’aide à la personne qui l’administre. Elle a besoin de le configurer pour permettre à Nextcloud d’y accéder pour vous.",
     "Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s" : "Impossible de contacter le wiki à l’adresse %s. Merci de réessayer plus tard, ou de demander de l’aide à la personne qui l’administre. L’erreur était : %s",
-    "All set!" : "C’est tout bon !",
+    "All set!" : "C’est tout bon!",
     "The wiki %s is ready to be used." : "Le wiki %s est prêt à être utilisé.",
     "If you reach a non-existing document after clicking on “Get access”, this means the wiki must be set up. Please ask its administrator to do it for you." : "Si vous arrivez sur un document non existant après avoir cliqué sur «Obtenir l’accès», ça veut dire que le wiki doit être configuré. Merci de demander à la personne qui l’administre de le faire pour vous."
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
