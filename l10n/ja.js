@@ -9,6 +9,7 @@ OC.L10N.register(
     "Actions" : "アクション",
     "Notes" : "Notes",
     "Preferences" : "環境設定",
+    "Log out" : "ログアウト",
     "Access" : "アクセス"
 },
 "nplurals=1; plural=0;");
