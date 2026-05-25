@@ -17,6 +17,7 @@ OC.L10N.register(
     "Actions" : "Veiksmai",
     "Notes" : "Užrašai",
     "Preferences" : "Nuostatos",
+    "XWiki didn’t provide an access token." : "„XWiki“ nepateikė prieigos rakto.",
     "Log out" : "Atsijungti",
     "Use" : "Naudoti",
     "Access" : "Prieiga",
