@@ -8,6 +8,7 @@ OC.L10N.register(
     "URL" : "URL",
     "Actions" : "操作",
     "Notes" : "附注",
+    "Got it" : "明白",
     "Preferences" : "设置偏好",
     "Log out" : "注销",
     "Access" : "投票范围"
