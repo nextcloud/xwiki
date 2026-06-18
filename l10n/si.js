@@ -1,6 +1,7 @@
 OC.L10N.register(
     "xwiki",
     {
+    "Save" : "Save",
     "Remove" : "ඉවත් කරන්න",
     "Add" : "එකතු කරන්න",
     "Actions" : "ක්‍රියාමාර්ග",
