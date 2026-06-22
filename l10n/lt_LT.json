@@ -76,7 +76,7 @@
     "An error happened while getting access to this wiki." : "Bandant gauti prieigą prie šio wiki, įvyko klaida.",
     "Please ask its administrator to register this Nextcloud instance." : "Paprašykite administratoriaus užregistruoti šį „Nextcloud“ egzempliorių.",
     "You cancelled the access." : "Jūs atšaukėte prieigą.",
-    "XWiki didn’t provide an access token." : "„XWiki“ nepateikė prieigos rakto.",
+    "XWiki didn’t provide an access token." : "„XWiki“ nepateikė prieigos žymens.",
     "Log out" : "Atsijungti",
     "Wikis and Access" : "Wiki ir prieiga",
     "When you search something, Nextcloud will fetch results from the following wikis. By default, Nextcloud is not logged to these wikis, so results will be what guests see." : "Kai ieškosite kažko, Nextcloud pateiks rezultatus iš šių wiki. Pagal numatytuosius nustatymus Nextcloud nėra prisijungęs prie šių wiki, todėl rezultatai bus tie, kuriuos matys svečiai.",

@@ -4,6 +4,8 @@
     "Could not find the content of this page." : "Lehe sisu polnud võimalik leida.",
     "An instance with this URL already exists." : "Sellise võrguaadressiga server või teenus on juba olemas.",
     "An instance with this URL already exists" : "Sellise võrguaadressiga server või teenus on juba olemas.",
+    "We did not get a successful reply from the instance (URL: %s)" : "Me ei saanud serverist korrektset/toimivat vastust (võrguaadress: %s)",
+    "We did not understand the instance’s version" : "Me ei suutnud aru saada, mis versioon on serveris kasutusel",
     "XWiki Page" : "XWiki leht",
     "XWiki" : "XWiki",
     "New wiki added!" : "Uus viki on lisatud",
