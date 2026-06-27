@@ -32,6 +32,8 @@ OC.L10N.register(
     "You are adding a wiki!" : "Sa oled lisamas vikit!",
     "Got it" : "Selge, sain aru",
     "Save as PDF" : "Salvesta PDF-failina",
+    "Please ask your administrator to add some." : "Palu oma peakasutajal või haldajal lisada mõni.",
+    "Find XWiki Content" : "Otsi XWiki sisu",
     "Integrated Mode" : "Lõimitud režiim",
     "Preferences" : "Eelistused",
     "Log out" : "Logi välja",
