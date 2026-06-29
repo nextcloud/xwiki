@@ -1,14 +1,30 @@
 { "translations": {
+    "Please provide a path in the save_path parameter." : "Por favor, forneça um caminho no parâmetro save_path.",
+    "An instance with this URL already exists." : "Uma instância com este URL já existe.",
+    "XWiki Page" : "Página XWiki",
+    "An error occurred while saving the page:" : "Ocorreu um erro ao salvar a página:",
+    "Please try again later." : "Por favor, tente novamente mais tarde.",
     "Saving…" : "A guardar...",
+    "Do you want to notify users about this new instance?" : "Deseja notificar os usuários sobre esta nova instância?",
+    "We could not determine if this wiki has the Nextcloud application. This is needed to get access to it from Nextcloud. If you land on a non existing page, it means it is not installed, in which case please ask the administrator of the wiki to install this extension." : "Não foi possível determinar se este wiki tem o aplicativo Nextcloud. Isso é necessário para obter acesso a ele pelo Nextcloud. Se você chegar a uma página inexistente, isso significa que ele não está instalado. Nesse caso, peça ao administrador do wiki para instalar esta extensão.",
     "Save" : "Guardar",
     "Remove" : "Remover",
+    "URL:" : "URL:",
     "Add" : "Adicionar",
     "URL" : "URL",
     "Actions" : "Ações",
     "Notes" : "Notas",
+    "Users might only be able to search content guests can access." : "Os usuários talvez só consigam pesquisar o conteúdo que os hóspedes podem acessar.",
+    "If you are an administrator, you can add wikis in the <a href='%s'>XWiki administration section</a>." : "Se você for um administrador, poderá adicionar wikis na <a href='%s'>seção de administração do XWiki</a>.",
+    "(not signed in)" : "(não logado)",
+    "Integrated Mode" : "Modo Integrado",
     "Preferences" : "Preferências",
+    "By default, you are redirected to XWiki whenever you click on a search result. If you enable the integrated mode, XWiki results will be displayed within Nextcloud. This can lead to a more seamless experience, but this mode is experimental and there can be display issues." : "Por padrão, você é redirecionado para o XWiki sempre que clica em um resultado de pesquisa. Se você ativar o modo integrado, os resultados do XWiki serão exibidos no Nextcloud. Isso pode resultar em uma experiência mais perfeita, mas este modo é experimental e pode haver problemas de exibição.",
+    "Please ask its administrator to register this Nextcloud instance." : "Peça ao administrador para registrar esta instância do Nextcloud.",
     "Log out" : "Sair",
+    "When you search something, Nextcloud will fetch results from the following wikis. By default, Nextcloud is not logged to these wikis, so results will be what guests see." : "Quando você pesquisar algo, o Nextcloud buscará resultados nas seguintes wikis. Por padrão, o Nextcloud não está logado nestas wikis, portanto, os resultados serão os que os visitantes veem.",
     "Use" : "Use",
-    "Access" : "Acesso"
+    "Access" : "Acesso",
+    "Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s" : "Não foi possível entrar em contato com o wiki em %s. Tente novamente mais tarde ou peça ajuda ao administrador. O erro foi: %s"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
