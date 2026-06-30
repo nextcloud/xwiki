@@ -39,6 +39,7 @@ OC.L10N.register(
     "Actions" : "Handlinger",
     "Notes" : "Noter",
     "Preferences" : "Indstillinger",
+    "Log out" : "Log ud",
     "Access" : "Adgang"
 },
 "nplurals=2; plural=(n != 1);");
