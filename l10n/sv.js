@@ -5,9 +5,9 @@ OC.L10N.register(
     "Save" : "Spara",
     "Remove" : "Ta bort",
     "Add" : "Lägg till",
-    "URL" : "Webbadress",
-    "Actions" : "Funktioner",
-    "Notes" : "Anteckning",
+    "URL" : "URL",
+    "Actions" : "Åtgärder",
+    "Notes" : "Anteckningar",
     "Preferences" : "Inställningar",
     "Log out" : "Logga ut",
     "Access" : "Åtkomst"
