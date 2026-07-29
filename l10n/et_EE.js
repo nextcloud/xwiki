@@ -32,6 +32,7 @@ OC.L10N.register(
     "Check" : "Kontrolli",
     "Save" : "Salvesta",
     "Remove" : "Eemalda",
+    "XWiki Instances" : "XWiki serverid",
     "URL:" : "Võrguaadress:",
     "Add" : "Lisa",
     "No wikis are registered yet." : "Ühtegi vikit pole veel registreeritud.",
