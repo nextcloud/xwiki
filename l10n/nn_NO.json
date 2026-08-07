@@ -1,0 +1,9 @@
+{ "translations": {
+    "Save" : "Lagre",
+    "Remove" : "Fjern",
+    "Add" : "Legg til",
+    "URL" : "URL",
+    "Actions" : "Handlingar",
+    "Notes" : "Notat"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
