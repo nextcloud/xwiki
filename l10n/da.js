@@ -34,10 +34,12 @@ OC.L10N.register(
     "An error occured while saving the instance." : "Der opstod en fejl under lagring af forekomsten.",
     "Save" : "Gem",
     "Remove" : "Fjern",
+    "URL:" : "URL:",
     "Add" : "Tilføj",
     "URL" : "URL",
     "Actions" : "Handlinger",
     "Notes" : "Noter",
+    "Got it" : "Fik det",
     "Preferences" : "Indstillinger",
     "Log out" : "Log ud",
     "Access" : "Adgang"
