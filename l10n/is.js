@@ -9,6 +9,7 @@ OC.L10N.register(
     "Actions" : "Aðgerðir",
     "Notes" : "Minnispunktar",
     "Preferences" : "Kjörstillingar",
+    "Log out" : "Skrá út",
     "Use" : "Nota",
     "Access" : "Aðgangur"
 },

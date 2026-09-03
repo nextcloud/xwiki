@@ -7,6 +7,7 @@
     "Actions" : "Aðgerðir",
     "Notes" : "Minnispunktar",
     "Preferences" : "Kjörstillingar",
+    "Log out" : "Skrá út",
     "Use" : "Nota",
     "Access" : "Aðgangur"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
