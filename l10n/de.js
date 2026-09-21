@@ -87,7 +87,7 @@ OC.L10N.register(
     "Use" : "Verwenden",
     "Access" : "Zugriff",
     "We were unable to authenticate on your behalf on the wiki at %s. Try to get access with the button below. If it still does not work, please ask for help to its administrator. They need to set it up so Nextcloud can access it on your behalf." : "Wir konnten uns in deinem Namen im Wiki unter %s nicht anmelden. Versuche, mit der Schaltfläche unten Zugriff zu erhalten. Wenn es immer noch nicht funktioniert, bitte die Administration um Hilfe. Sie muss einrichten, dass Nextcloud in deinen Namen darauf zugreifen kann.",
-    "Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s" : "Verbindung zum Wiki %s konnte nicht hergestellt werden. Bitte versuche es später noch einmal oder bitte die Administration um Hilfe. Der Fehler war: %s",
+    "Could not contact the wiki at %s. Please try again later, or ask for help to its administrator. The error was: %s" : "Verbindung zum Wiki %s konnte nicht hergestellt werden. Bitte später noch einmal versuchen oder die Administration um Hilfe bitten. Der Fehler war: %s",
     "All set!" : "Alles fertig!",
     "The wiki %s is ready to be used." : "Das Wiki %s ist einsatzbereit.",
     "If you reach a non-existing document after clicking on “Get access”, this means the wiki must be set up. Please ask its administrator to do it for you." : "Wenn du nach dem Klicken auf \"Zugriff erhalten\" zu einem nicht vorhandenen Dokument gelangen, bedeutet dies, dass das Wiki eingerichtet werden muss. Bitte die Administration, dies für dich vorzunehmen."
