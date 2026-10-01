@@ -156,13 +156,12 @@ class SettingsManager {
 
 		if (empty($clientId)) {
 			$clientId = $this->secureRandom->generate(64, self::validChars);
+			$this->config->setAppValue(
+				'xwiki',
+				'clientId',
+				$clientId
+			);
 		}
-
-		$this->config->setAppValue(
-			'xwiki',
-			'clientId',
-			$clientId
-		);
 
 		return $clientId;
 	}
