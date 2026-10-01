@@ -46,6 +46,17 @@ if (!is_array($instances)) {
 	<div class="section">
 		<h2 class="settings-section__title"><?php p($l->t('XWiki Instances')); ?></h2>
 		<p><?php p($l->t('You can add XWiki instances that users will be able to access from Nextcloud.')); ?></p>
+                <p><?php p($l->t('Important: in XWiki, you need to allow dynamic Open ID client registration, or to register this particular Nextcloud instance (static registration). For a static registration, use the following:'));?></p>
+		<table>
+			<tr>
+				<th><?php p($l->t('Redirect URL'));?></th>
+				<td><code><?php p($_['redirectUri']);?></code></td>
+			</tr>
+			<tr>
+				<th><?php p($l->t('Client ID'));?></th>
+				<td><code><?php p($_['clientId']);?></code></td>
+			</tr>
+		</table>
 		<p>
 			<label>
 				<?php p($l->t('URL:')); ?>
