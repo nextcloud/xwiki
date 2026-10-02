@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Vista…",
     "Save" : "Vista",
     "Remove" : "Fjarlægja",
+    "Client ID" : "Biðlaraauðkenni",
     "Add" : "Bæta við",
     "URL" : "Slóð",
     "Actions" : "Aðgerðir",

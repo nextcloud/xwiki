@@ -2,6 +2,7 @@ OC.L10N.register(
     "xwiki",
     {
     "Save" : "Enrollañ",
+    "Client ID" : "ID kliant",
     "URL" : "URL",
     "Actions" : "Oberoù",
     "Notes" : "Notennoù",

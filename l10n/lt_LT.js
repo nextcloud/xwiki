@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "Šalinti",
     "XWiki Instances" : "XWiki egzempliorius",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Galite pridėti XWiki egzempliorius, prie kurių vartotojai galės prisijungti iš „Nextcloud“.",
+    "Client ID" : "Kliento ID",
     "URL:" : "URL:",
     "Add" : "Pridėti",
     "No wikis are registered yet." : "Dar nėra užregistruotų wiki.",

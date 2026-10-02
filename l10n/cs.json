@@ -40,6 +40,7 @@
     "Remove" : "Odebrat",
     "XWiki Instances" : "Instance XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Je možné přidat instance XWiki, ke kterým uživatelé budou moci přistupovat z Nextcloud.",
+    "Client ID" : "Identif. klienta",
     "URL:" : "URL:",
     "Add" : "Přidat",
     "No wikis are registered yet." : "Zatím nejsou zaregistrovány žádné wiki stránky.",

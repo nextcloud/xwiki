@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Lagrer…",
     "Save" : "Lagre",
     "Remove" : "Fjern",
+    "Client ID" : "Klient-ID",
     "Add" : "Legg til",
     "URL" : "URL",
     "Actions" : "Handlinger",

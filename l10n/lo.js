@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "ຍ້າຍອອກ",
     "XWiki Instances" : "ອິນສະແຕນ XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "ທ່ານສາມາດເພີ່ມອິນສະແຕນ XWiki ທີ່ຜູ້ໃຊ້ຈະສາມາດເຂົ້າເຖິງໄດ້ຈາກ Nextcloud.",
+    "Client ID" : "Client ID",
     "URL:" : "URL:",
     "Add" : "ເພີ່ມ",
     "No wikis are registered yet." : "ຍັງບໍ່ມີວິກິໃດລົງທະບຽນ.",

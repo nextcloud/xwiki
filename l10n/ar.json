@@ -40,6 +40,7 @@
     "Remove" : "حذف",
     "XWiki Instances" : "تطبيقات XWiki على الخادوم",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "بإمكانك إضافة تطبيقات XWiki على الخادوم والتي يمكن للمستخدمين استعمالها من نكست كلاود.",
+    "Client ID" : "معرف العميل",
     "URL:" : "عنوان URL:",
     "Add" : "إضافة ",
     "No wikis are registered yet." : "لم يتم تسجيل أي نصوص ويكي حتى الآن.",

@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "حذف",
     "XWiki Instances" : "نمونه‌های XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "می‌توانید نمونه‌های XWiki را اضافه کنید که کاربران بتوانند از نکست‌کلود به آن‌ها دسترسی داشته باشند.",
+    "Client ID" : "شناسه Client",
     "URL:" : "URL:",
     "Add" : "افزودن",
     "No wikis are registered yet." : "هنوز هیچ ویکی ثبت نشده است.",

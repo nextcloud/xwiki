@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "保存中...",
     "Save" : "保存する",
     "Remove" : "削除",
+    "Client ID" : "クライアント ID",
     "Add" : "追加",
     "URL" : "URL",
     "Actions" : "アクション",

@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Tallennetaan…",
     "Save" : "Tallenna",
     "Remove" : "Poista",
+    "Client ID" : "Asiakas-ID",
     "Add" : "Lisää",
     "URL" : "URL-osoite",
     "Actions" : "Toiminnot",

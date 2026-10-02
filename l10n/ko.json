@@ -40,6 +40,7 @@
     "Remove" : "삭제",
     "XWiki Instances" : "XWiki 인스턴스",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "사용자가 Nextcloud로 부터 접근할 수 있도록 XWiki 인스턴스를 추가할 수 있습니다.",
+    "Client ID" : "클라이언트 ID",
     "URL:" : "URL:",
     "Add" : "추가",
     "No wikis are registered yet." : "아직 등록된 위키가 없습니다.",

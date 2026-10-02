@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Guardando…",
     "Save" : "Guardar",
     "Remove" : "Quitar",
+    "Client ID" : "ID de veceru",
     "Add" : "Amestar",
     "URL" : "URL",
     "Actions" : "Aiciones",

@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Đang lưu...",
     "Save" : "Lưu",
     "Remove" : "Xoá",
+    "Client ID" : "ID khách hàng",
     "Add" : "Thêm",
     "URL" : "URL",
     "Actions" : "Hành động",

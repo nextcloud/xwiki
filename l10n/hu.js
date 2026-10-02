@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Mentés…",
     "Save" : "Mentés",
     "Remove" : "Eltávolítás",
+    "Client ID" : "Kliensazonosító",
     "Add" : "Hozzáadás",
     "URL" : "URL",
     "Actions" : "Műveletek",

@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "Kendu",
     "XWiki Instances" : "XWiki Instantziak",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Erabiltzaileek NextCoud-etik sar daitezkeen XWiki instantziak gehitu ditzakezu.",
+    "Client ID" : "Bezeroaren IDa",
     "URL:" : "URL:",
     "Add" : "Gehitu",
     "No wikis are registered yet." : "Oraindik ez da wikirik erregistratu.",

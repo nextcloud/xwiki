@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "正在儲存……",
     "Save" : "儲存",
     "Remove" : "移除",
+    "Client ID" : "客戶端 ID",
     "Add" : "新增",
     "URL" : "URL",
     "Actions" : "動作",

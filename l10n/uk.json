@@ -40,6 +40,7 @@
     "Remove" : "Вилучити",
     "XWiki Instances" : "Екземпляри XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Ви можете додати екземпляри XWiki, до яких користувачі зможуть отримати доступ з Nextcloud.",
+    "Client ID" : "Ідентифікатор клієнта",
     "URL:" : "URL:",
     "Add" : "Додати",
     "No wikis are registered yet." : "Наразі не зареєстровано жодної вікі.",

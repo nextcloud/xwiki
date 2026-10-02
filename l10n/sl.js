@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Poteka shranjevanje ...",
     "Save" : "Shrani",
     "Remove" : "Odstrani",
+    "Client ID" : "ID Odjemalca",
     "Add" : "Dodaj",
     "URL" : "Naslov URL",
     "Actions" : "Dejanja",

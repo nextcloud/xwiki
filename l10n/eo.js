@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Saving…" : "Konservado...",
     "Save" : "Konservi",
+    "Client ID" : "Klientidentigilo",
     "URL" : "Retadreso",
     "Actions" : "Agoj",
     "Use" : "Uzi",

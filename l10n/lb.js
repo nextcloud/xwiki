@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Späichert …",
     "Save" : "Späicheren",
     "Remove" : "Ewechhuelen",
+    "Client ID" : "Client ID",
     "Add" : "Dobäisetzen",
     "URL" : "URL",
     "Actions" : "Aktiounen"

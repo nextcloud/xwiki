@@ -6,6 +6,7 @@ OC.L10N.register(
     "Saving…" : "Zapisywanie…",
     "Save" : "Zapisz",
     "Remove" : "Usuń",
+    "Client ID" : "Identyfikator klienta",
     "URL:" : "URL:",
     "Add" : "Dodaj",
     "URL" : "Adres URL",

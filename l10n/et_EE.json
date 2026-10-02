@@ -37,6 +37,7 @@
     "Remove" : "Eemalda",
     "XWiki Instances" : "XWiki serverid",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Sa saad lisada XWiki servereid, millele kasutajad saavad Nextcloudist ligi.",
+    "Client ID" : "Klienditunnus (Client ID)",
     "URL:" : "Võrguaadress:",
     "Add" : "Lisa",
     "No wikis are registered yet." : "Ühtegi vikit pole veel registreeritud.",

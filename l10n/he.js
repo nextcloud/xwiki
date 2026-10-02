@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "מתבצעת שמירה…",
     "Save" : "שמירה",
     "Remove" : "הסרה",
+    "Client ID" : "מזהה לקו",
     "Add" : "הוספה",
     "URL" : "כתובת",
     "Actions" : "פעולות",

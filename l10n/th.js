@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Save" : "บันทึก",
     "Remove" : "ลบออก",
+    "Client ID" : "รหัสไคลเอ็นต์",
     "URL" : "URL",
     "Actions" : "การกระทำ",
     "Notes" : "โน้ต",

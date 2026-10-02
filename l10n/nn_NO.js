@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Save" : "Lagre",
     "Remove" : "Fjern",
+    "Client ID" : "Klient-ID",
     "Add" : "Legg til",
     "URL" : "URL",
     "Actions" : "Handlingar",

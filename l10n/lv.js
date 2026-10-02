@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Saglabā...",
     "Save" : "Saglabāt",
     "Remove" : "Noņemt",
+    "Client ID" : "Klienta ID",
     "Add" : "Pievienot",
     "URL" : "URL",
     "Actions" : "Darbības",

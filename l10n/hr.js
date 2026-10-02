@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Spremanje...",
     "Save" : "Spremi",
     "Remove" : "Ukloni",
+    "Client ID" : "ID klijenta",
     "Add" : "Dodaj",
     "URL" : "URL",
     "Actions" : "Radnje",

@@ -1,6 +1,7 @@
 { "translations": {
     "Save" : "บันทึก",
     "Remove" : "ลบออก",
+    "Client ID" : "รหัสไคลเอ็นต์",
     "URL" : "URL",
     "Actions" : "การกระทำ",
     "Notes" : "โน้ต",

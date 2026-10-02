@@ -5,6 +5,7 @@ OC.L10N.register(
     "Saving…" : "Asekles…",
     "Save" : "Sekles",
     "Remove" : "Kkes",
+    "Client ID" : "Asulay ID n wemsaɣ",
     "Add" : "Rnu",
     "URL" : "URL",
     "Actions" : "Tigawin",

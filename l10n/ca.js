@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "S'està desant…",
     "Save" : "Desar",
     "Remove" : "Suprimir",
+    "Client ID" : "ID del client",
     "Add" : "Afegeix",
     "URL" : "URL",
     "Actions" : "Accions",

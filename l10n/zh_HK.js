@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "移除",
     "XWiki Instances" : "XWiki 實例",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "您可以添加 XWiki 實例，用戶將能夠從 Nextcloud 存取這些實例。",
+    "Client ID" : "客戶端 ID",
     "URL:" : "URL︰",
     "Add" : "添加",
     "No wikis are registered yet." : "尚未註冊任何維基。",

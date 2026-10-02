@@ -40,6 +40,7 @@
     "Remove" : "Kaldır",
     "XWiki Instances" : "XWiki kopyaları",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Kullanıcıların Nextcloud üzerinden erişebileceği XWiki kopyaları ekleyebilirsiniz.",
+    "Client ID" : "Müşteri kimliği",
     "URL:" : "Adres:",
     "Add" : "Ekle",
     "No wikis are registered yet." : "Henüz bir viki kaydedilmemiş.",

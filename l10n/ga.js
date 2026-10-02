@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "Bain",
     "XWiki Instances" : "Cásanna XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Is féidir leat cásanna XWiki a chur leis a mbeidh úsáideoirí in ann rochtain a fháil orthu ó Nextcloud.",
+    "Client ID" : "Aitheantas Cliant",
     "URL:" : "URL:",
     "Add" : "Cuir",
     "No wikis are registered yet." : "Níl aon vicí cláraithe fós.",

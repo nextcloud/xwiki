@@ -1,6 +1,7 @@
 { "translations": {
     "Saving…" : "Guardando...",
     "Save" : "Guardar",
+    "Client ID" : "ID del cliente",
     "Add" : "Guardar",
     "Actions" : "Acciones",
     "Notes" : "Notas",

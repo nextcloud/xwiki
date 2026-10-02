@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "Verwijderen",
     "XWiki Instances" : "XWiki Services",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "U kunt XWiki services toevoegen waar gebruikers toegang tot kunnen krijgen vanuit Nextcloud.",
+    "Client ID" : "Client-ID",
     "URL:" : "URL:",
     "Add" : "Toevoegen",
     "No wikis are registered yet." : "Er zijn nog geen wiki's geregistreerd.",

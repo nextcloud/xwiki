@@ -4,6 +4,7 @@ OC.L10N.register(
     "Saving…" : "Saving…",
     "Save" : "Saqlash",
     "Remove" : "O'chirish",
+    "Client ID" : "Mijoz identifikatori",
     "Add" : "Add",
     "URL" : "URL",
     "Actions" : "Actions",

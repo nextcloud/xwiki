@@ -40,6 +40,7 @@
     "Remove" : "Quitar",
     "XWiki Instances" : "Instancias de XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Puedes añadir instancias XWiki a las que los usuarios podrán acceder desde Nextcloud.",
+    "Client ID" : "ID de cliente",
     "URL:" : "URL:",
     "Add" : "Añadir",
     "No wikis are registered yet." : "No hay wikis registradas todavía.",

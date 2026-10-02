@@ -42,6 +42,7 @@ OC.L10N.register(
     "Remove" : "ئۆچۈرۈڭ",
     "XWiki Instances" : "XWiki مىساللىرى",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "ئىشلەتكۈچىلەر Nextcloud ئارقىلىق كىرەلەيدىغان XWiki ئۈلگىلىرىنى قوشالايسىز.",
+    "Client ID" : "خېرىدار ID",
     "URL:" : "URL:",
     "Add" : "قوش",
     "No wikis are registered yet." : "ھازىرغىچە ھېچقانداق ۋىكى تىزىملاتمىغان.",

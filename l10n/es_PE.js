@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Saving…" : "Guardando...",
     "Save" : "Guardar",
+    "Client ID" : "ID del cliente",
     "Add" : "Guardar",
     "Actions" : "Acciones",
     "Notes" : "Notas",
