@@ -40,6 +40,8 @@
     "Remove" : "Odobrať",
     "XWiki Instances" : "Inštancie XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Môžete pridať inštancie XWiki, ku ktorým budú mať používatelia prístup z Nextcloudu.",
+    "Important: in XWiki, you need to allow dynamic Open ID client registration, or to register this particular Nextcloud instance (static registration). For a static registration, use the following:" : "Dôležité: v XWiki musíte povoliť dynamickú registráciu klienta Open ID, alebo zaregistrovať túto konkrétnu inštanciu Nextcloudu (statická registrácia). Pre statickú registráciu použite nasledovné:",
+    "Redirect URL" : "URL presmerovania",
     "Client ID" : "Client ID",
     "URL:" : "URL:",
     "Add" : "Pridať",
