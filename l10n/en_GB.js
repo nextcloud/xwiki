@@ -42,6 +42,8 @@ OC.L10N.register(
     "Remove" : "Remove",
     "XWiki Instances" : "XWiki Instances",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "You can add XWiki instances that users will be able to access from Nextcloud.",
+    "Important: in XWiki, you need to allow dynamic Open ID client registration, or to register this particular Nextcloud instance (static registration). For a static registration, use the following:" : "Important: in XWiki, you need to allow dynamic Open ID client registration, or to register this particular Nextcloud instance (static registration). For a static registration, use the following:",
+    "Redirect URL" : "Redirect URL",
     "Client ID" : "Client ID",
     "URL:" : "URL:",
     "Add" : "Add",

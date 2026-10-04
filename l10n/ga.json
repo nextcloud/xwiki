@@ -40,6 +40,8 @@
     "Remove" : "Bain",
     "XWiki Instances" : "Cásanna XWiki",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "Is féidir leat cásanna XWiki a chur leis a mbeidh úsáideoirí in ann rochtain a fháil orthu ó Nextcloud.",
+    "Important: in XWiki, you need to allow dynamic Open ID client registration, or to register this particular Nextcloud instance (static registration). For a static registration, use the following:" : "Tábhachtach: in XWiki, ní mór duit clárú dinimiciúil cliant OpenID a cheadú, nó an t-eiseamláir Nextcloud seo a chlárú (clárú statach). Chun clárú statach a dhéanamh, bain úsáid as an méid seo a leanas:",
+    "Redirect URL" : "URL Atreoraithe",
     "Client ID" : "Aitheantas Cliant",
     "URL:" : "URL:",
     "Add" : "Cuir",
