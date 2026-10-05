@@ -40,6 +40,8 @@
     "Remove" : "移除",
     "XWiki Instances" : "XWiki 實例",
     "You can add XWiki instances that users will be able to access from Nextcloud." : "您可以添加 XWiki 實例，用戶將能夠從 Nextcloud 存取這些實例。",
+    "Important: in XWiki, you need to allow dynamic Open ID client registration, or to register this particular Nextcloud instance (static registration). For a static registration, use the following:" : "重要：你需要在 XWiki 中允許動態 Open ID 用戶端註冊，或註冊此 Nextcloud 執行個體（靜態註冊）。如採用靜態註冊，請使用以下資料：",
+    "Redirect URL" : "重導向 URL：",
     "Client ID" : "客戶端 ID",
     "URL:" : "URL︰",
     "Add" : "添加",
