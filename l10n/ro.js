@@ -11,6 +11,7 @@ OC.L10N.register(
     "Notes" : "Notițe",
     "Preferences" : "Preferințe",
     "Log out" : "Deconectare",
+    "Use" : "Folosește",
     "Access" : "Acces"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
