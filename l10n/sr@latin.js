@@ -2,6 +2,8 @@ OC.L10N.register(
     "xwiki",
     {
     "Save" : "Sačuvaj",
+    "Remove" : "Ukloni",
+    "Add" : "Dodaj",
     "Notes" : "Beleške",
     "Preferences" : "Postavke",
     "Log out" : "Odjava",

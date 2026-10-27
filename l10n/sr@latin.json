@@ -1,5 +1,7 @@
 { "translations": {
     "Save" : "Sačuvaj",
+    "Remove" : "Ukloni",
+    "Add" : "Dodaj",
     "Notes" : "Beleške",
     "Preferences" : "Postavke",
     "Log out" : "Odjava",
