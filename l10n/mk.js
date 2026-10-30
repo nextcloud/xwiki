@@ -8,6 +8,7 @@ OC.L10N.register(
     "Add" : "Додади",
     "URL" : "Адреса",
     "Actions" : "Акции",
+    "Notes" : "Белешки",
     "Preferences" : "Перформанси",
     "Log out" : "Одјава",
     "Use" : "Користење",
