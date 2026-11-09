@@ -4,6 +4,7 @@ OC.L10N.register(
     "XWiki" : "XWiki",
     "Removing…" : "Usuwanie…",
     "Saving…" : "Zapisywanie…",
+    "Check" : "Sprawdź",
     "Save" : "Zapisz",
     "Remove" : "Usuń",
     "Client ID" : "Identyfikator klienta",
